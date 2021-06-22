@@ -1,8 +1,7 @@
-# **_PRELIMINARY - NOT FINAL_**
 # **User Story - Adminisztrátori szerepkör**
 
 ## **medications**
-Idősottthon lakóinak gyógyszerellátása
+Idősotthon lakóinak gyógyszerellátása
 
 ---
 ---
@@ -14,9 +13,8 @@ Idősottthon lakóinak gyógyszerellátása
 **Elfogadási kritérium:**
 
 - a dashboard tartalmazza az idősotthon lakóinak számát
-- az aktuális gyógyszerkészlet hány hétre elegendő
-- vannak-e lejárt szavatosságú gyógyszerek (hány doboz)
-- mikor kell legközelebb vényt, illetve gyógyszert kiváltani
+- az aktuális gyógyszerkészlet mennyi időre, hány hétre elegendő
+- mikor kell legközelebb vényt, illetve gyógyszert beváltani/kiváltani
 
 ---
 ---
@@ -142,7 +140,7 @@ Az oldalra navigálva megjelenik a listában az összes gyógyszert szedő lakó
 
 **Elfogadási kritérium:**
 
-Az oldalon legördőlő listából lehet kiválasztani a lakót, a gyógyszert, napi maximum 3 gyógyszerbeszedési alkalmat feltételezve lehet megadni az alkalmankénti adagokat. Egy lakóhoz bármennyi gyógyszer fajtát fel lehet venni. Az oldal menüből illetve a listázó oldalról nyitható meg. Sikeres mentés után listázó oldal automatikusan frissül.
+Az oldalon legördőlő listából lehet kiválasztani a lakót, a gyógyszert, napi maximum 3 (reggel, délben, este) gyógyszerbeszedési alkalmat feltételezve lehet megadni az alkalmankénti adagokat. Egy lakóhoz bármennyi gyógyszer fajtát fel lehet venni. Az oldal menüből illetve a listázó oldalról nyitható meg. Sikeres mentés után a listázó oldal automatikusan frissül.
 
 ---
 **3. agilis felhasználói történet**
@@ -170,55 +168,108 @@ A mező fejlécére kattintva a lista a mező szerint először növekvő sorren
 
 ---
 ---
-## _**5. Lakók-gyógyszerkészlet adatbázis**_
+## _**5. Lakók-gyógyszerkészlet és vénykészlet adatbázis**_
 
 ---
 **1. agilis felhasználói történet**
-> _Ezen az oldalon megjelenő listában az idősotthonban lakók és a nevükre kiváltott valamennyi gyógyszerből a még nem kiosztott készlet látható_
+> _Ezen az oldalon megjelenő listában az idősotthonban lakók és a nevükre kiváltott valamennyi gyógyszerből a még nem kiosztott készlet és a nevükre kiállított, de még be nem váltott vények (a vényen szereplő gyógyszer) láthatóak_
 
 **Elfogadási kritérium:**
 
-Az oldalra navigálva megjelenik a listában az összes lakó, akinek a nevén gyógyszer van, valamint gyógyszerenként a még nem felhasznált készlet
+Az oldalra navigálva megjelenik a listában az összes lakó, akinek a nevén gyógyszer vagy vény van, valamint gyógyszerenként a még nem felhasznált készlet, valamint a vényeken szereplő gyógyszerkészlet
 
 ---
 **2. agilis felhasználói történet**
-> _Új lakó gyógyszerkészletének beállítása_
+> _Új lakó gyógyszerkészletének / vénykészletének beállítása_
 
 **Elfogadási kritérium:**
 
-Az oldalon legördőlő listából lehet kiválasztani a lakót, a gyógyszert és a mennyiséget. Egy lekóhoz bármennyi gyógyszert fajtát fel lehet venni. Az oldal menüből illetve a listázó oldalról nyitható meg. Sikeres mentés után listázó oldal automatikusan frissül.
+Az oldalon legördőlő listából lehet kiválasztani a lakót, a gyógyszert és a vényen szereplő gyógyszert, valamint a mennyiséget. Egy lakóhoz bármennyi gyógyszert fajtát fel lehet venni. Az oldal menüből illetve a listázó oldalról nyitható meg. Sikeres mentés után listázó oldal automatikusan frissül.
 
 ---
 **3. agilis felhasználói történet**
-> _A lakó gyógyszerkészletének módosítása_
+> _A lakó gyógyszerkészletének / vénykészletének módosítása_
 
 **Elfogadási kritérium:**
 
-A listában kiválasztott lakó gyógyszerkészlete módosítható. Sikeres mentés után listázó oldal automatikusan frissül.
+A listában kiválasztott lakó gyógyszerkészlete/vénykészlete módosítható. Sikeres mentés után listázó oldal automatikusan frissül.
 
 ---
 **4. agilis felhasználói történet**
-> _A lakók-gyógyszerkészletek listájában bármely mező szerint lehet keresni, szűrni_
+> _A lakók-gyógyszerkészletek/vénykészletek listában bármely mező szerint lehet keresni, szűrni_
 
 **Elfogadási kritérium:**
 
-A mező kiválasztásával és a keresési szöveg megadásával frissül a listaoldal, ahol csak a szűrési feltételnek megfelelő lakók és gyógyszerkészleteik adatai láthatóak csak.
+A mező kiválasztásával és a keresési szöveg megadásával frissül a listaoldal, ahol csak a szűrési feltételnek megfelelő lakók és gyógyszerkészleteik/vénykészleteik adatai láthatóak csak.
 
 ---
 **5. agilis felhasználói történet**
-> _A lakók-gyógyszerkészletek listáját bármely mező szerint lehet sorba rendezni_
+> _A lakók-gyógyszerkészletek/vénykészletek listáját bármely mező szerint lehet sorba rendezni_
 
 **Elfogadási kritérium:**
 
 A mező fejlécére kattintva a lista a mező szerint először növekvő sorrendbe, a következő kattintásra csökkenő sorrendbe, míg a harmadik kattintásra normál sorrendbe lesz rendezve.
 
 ---
-**6. agilis felhasználói történet**
-> _A gyógyszerkészletek csökkentése a lakók heti adagjának kiosztása után_
+---
+## _**6. A gyógyszerezés működtetése**_
+
+---
+**1. agilis felhasználói történet**
+> _A heti gyógyszeradagok kiosztása a lakóknak az orvos által előírt adagokban. _
 
 **Elfogadási kritérium:**
 
-A funkció egy menüpont kiválasztásával indítható. A menüpont csak akkor aktív, ha van készleten legalább egy heti gyógyszer adag. Ezt a tényt a dashboard is mutatja. 
+A funkció menüpontból indítható. A menüpont inaktív, ha bármely lakónál nem áll rendelkezésre a heti gyógyszeradag. A dashboard is mutatja, hogy a gyógyszerkészlet mennyi időre elegendő. A funkció elindításával először egy listát látunk az összes lakóról akinek ki kell osztani a gyógyszereit. Egy lakót kiválasztva feljön egy oldal a lakó gyógyszereinek a listájával és a részletes adagolási infóval. A gyógyszerek kiosztása után egy gombnyomásra a kiosztott mennyiség levonódik a lakó készletéből, visszatérünk a listázó oldalra, ahol mindig csak azok a lakók láthatóak, akiknek még nem lettek kiosztva a heti gyógyszeradag.
+
+---
+**2. agilis felhasználói történet**
+> _A vények beváltása_
+
+**Elfogadási kritérium:**
+
+A funkció menüpontból indítható. A menüpont akkor aktív, ha van olyan lakó akinek a gyógyszeradagja már nem elegendő egy teljes hétre, de az adott gyógyszerre van recepje. A dashboard is mutatja, ha fennáll ez az állapot. A funkció elindításával először egy listát látunk az összes lakóról akinek van kiváltandó receptje. Egy lakót kiválasztva feljön egy oldal a beváltandó vények listájával. A vényeket megjelölve a vények állapota "beváltás alatt" lesz. Ezután lehet a vényeken szereplő gyógyszereket kiváltani a gyógyszertárban.
+
+---
+**3. agilis felhasználói történet**
+> _A kiváltott gyógyszerek egyenkénti visszavezetése a rendszerbe_
+
+**Elfogadási kritérium:**
+
+A funkció menüpontból indítható. A menüpont akkor aktív, ha van "beváltás alatt" státuszú vény. A dashboard is mutatja, ha fennáll ez az állapot. A funkció elindításával először egy listát látunk az összes lakóról akinek van "beváltás alatt" státuszú vénye. Egy lakót kiválasztva feljön egy oldal a vények listájával. Minden vénynél jelölni kell, hogy a beváltás megtörtént. Ekkor a vényen szereplő gyógyszer adag hozzáadódik a lakó gyógyszerkészletéhez, a vény pedig törlődik a rendszerből. Az adott lakó vényeinek feldolgozása után visszatérünk a listázó oldalra, ahol mindig csak azok a lakók láthatóak, akiknek a vényei még nem lettek feldolgozva. 
+
+---
+**4. agilis felhasználói történet**
+> _A kiváltott gyógyszerek tömeges visszavezetése a rendszerbe_
+
+**Elfogadási kritérium:**
+
+A funkció menüpontból indítható. A menüpont akkor aktív, ha van "beváltás alatt" státuszú vény. A dashboard is mutatja, ha fennáll ez az állapot. A funkció elindításával egy lépésben lehet az összes "beváltás alatt" státuszú vényen szereplő gyógyszert az adott lakó készletéhez rendelni és a vényeket törölni egy felpattanó ablakon történő megerősítés után. 
+
+---
+**5. agilis felhasználói történet**
+> _A vények feliratása az orvossal_
+
+**Elfogadási kritérium:**
+
+A funkció menüpontból indítható. A menüpont akkor aktív, ha gyógyszerkészlet már nem elegendő 1 hétre és nincs beváltható vény sem. A dashboard is mutatja, ha fennáll ez az állapot. A funkció elindításával először egy listát látunk az összes lakóról akinek van gyógyszere, amire receptet kell felíratni. Egy lakót kiválasztva feljön egy oldal a gyógyszerek listájával. Minden gyógyszernél jelölni kell, hogy a feliratás megtörtént. Ekkor a vény státusza "feliratás alatt" lesz, és hozzáadódik a lakó vénykészletéhez.
+
+---
+**6. agilis felhasználói történet**
+> _Az orvostól átvett vények egyenkénti visszavezetése a rendszerbe_
+
+**Elfogadási kritérium:**
+
+A funkció menüpontból indítható. A menüpont akkor aktív, ha van "feliratás alatt" státuszú vény. A dashboard is mutatja, ha fennáll ez az állapot. A funkció elindításával először egy listát látunk az összes lakóról akinek van "feliratás alatt" státuszú vénye. Egy lakót kiválasztva feljön egy oldal a vények listájával. Minden vénynél jelölni kell, hogy a feliratás megtörtént. Ekkor a vény státusza "felhasználható" lesz a lakó vénykészletében. Az adott lakó vényeinek feldolgozása után visszatérünk a listázó oldalra, ahol mindig csak azok a lakók láthatóak, akiknek a vényei még nem lettek feldolgozva. 
+
+---
+**7. agilis felhasználói történet**
+> _Az orvostól átvett vények tömeges visszavezetése a rendszerbe_
+
+**Elfogadási kritérium:**
+
+A funkció menüpontból indítható. A menüpont akkor aktív, ha van "feliratás alatt" státuszú vény. A dashboard is mutatja, ha fennáll ez az állapot. A funkció elindításával egy lépésben lehet az összes "feliratás alatt" státuszú vényt "felhasználható" státuszúvá tenni a lakó vénykészletében egy felpattanó ablakon történő megerősítés után. 
+
 
 ---
 ---
@@ -233,3 +284,6 @@ magas
 **További fejlesztési lehetőségek:**  
 - hibaüzenetek megjelenítése
 - a listázó oldalakon lapozó készítése
+- gyógyszer lejárati dátumok kezelése
+- vény lejárati dátumok kezelése
+- az adott ideig szedendő gyógyszerek (antibiotikumok) kezelése
