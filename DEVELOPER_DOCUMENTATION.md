@@ -38,8 +38,11 @@ Nyilvántartsa az ehhez szükséges legfontosabb adatokat. Lakók és gyógyszer
 ## **Főbb részei:**
 
 ---
+---
 
 ## _**1. Főoldal**_
+
+---
 
 **Komponens neve:** Dashboard  
 **Komponens helye:** page/dashboard
@@ -51,8 +54,11 @@ Kártyás elrendezésben jelenik meg a gyógyszerellátás pillanatnyi állapota
 - a kiváltandó gyógyszerek száma
 
 ---
+---
 
 ## _**2. Navigáció**_
+
+---
 
 **Komponens neve:** navigation  
 **Komponens helye:** common/navigation
@@ -67,11 +73,14 @@ Az egyes aloldalakra az Angular routing segítségével lehet navigálni egy BS 
 
 ---
 ---
+
 ## _**3. Lakók adatbázis**_
+
 ---
 
-**Osztály neve:** resident   
 **Osztály helye:** model/resident
+
+**Osztály neve:** resident   
 
 **Service neve:** resident  
 **Osztály helye:** service/resident
@@ -108,7 +117,7 @@ Ezek az adatok a következők:
 
 > _A ***Módosítás*** gombra kattintva egy űrlap segítségével a lakó adatai szerkeszthetők és menthetők az adatbázisban._
 
-- A ***Módosítás*** gombra való kattintással a szuperhős egyedi adatait tartalmazó aloldal nyílik meg, ahol a választott szuperhős adatait lehet beviteli mezők segítségével módosítani.
+- A ***Módosítás*** gombra való kattintással a lakó egyedi adatait tartalmazó aloldal nyílik meg, ahol a választott lakó adatait lehet beviteli mezők segítségével módosítani.
 - A ***Mentés*** gombra kattintva a program az adatbázisba menti a módosított adatokat.
 - A ***x*** ikonra kattintva mentés nélkül záródik be az oldal.
 - Bármelyik gomb megnyomásának hatására az összes lakót listázó oldalra navigál vissza az alkalmazás.
@@ -144,10 +153,78 @@ Ezek az adatok a következők:
 
 ---
 ---
-## _**3. A Marvel Universe aloldalai**_
+
+## _**4. A gyógyszerek adatbázis**_
+
 ---
 
+**Osztály helye:** model/medicine
+**Osztály neve:** medicine   
 
+**Service neve:** medicine  
+**Osztály helye:** service/medicine
+
+**Komponens neve:** medicine  
+**Komponens helye:** page/medicine
+
+Ezen az oldalon megjelenik az idősotthonban használt valamennyi gyógyszer listája a legfontosabb adatokkal.
+
+Ezek az adatok a következők:
+- id (azonosító)
+- name (név)
+- agent (hatóanyag)
+- packing (kiszerelés)
+
+---
+
+**Create:**
+
+> _Az ***Új gyógyszer*** gombra kattintva egy űrlap segítségével új gyógyszer adatai vehetők fel és menthetők az adatbázisban._
+
+- Az ***Új gyógyszer*** gombra való kattintással egy új oldal nyílik meg, ahol egy új gyógyszer adatait lehet input mezők segítségével bevinni.
+- A ***Mentés*** gombra kattintva a program az adatbázisba menti a megadott adatokat.
+- A ***x*** ikonra kattintva mentés nélkül záródik be az oldal.
+- Bármelyik gomb megnyomásának hatására az összes gyógyszert listázó oldalra navigál vissza az alkalmazás.
+
+---
+
+**Update:**
+
+> _A ***Módosítás*** gombra kattintva egy űrlap segítségével a gyógyszer adatai szerkeszthetők és menthetők az adatbázisban._
+
+- A ***Módosítás*** gombra való kattintással a gyógyszer egyedi adatait tartalmazó aloldal nyílik meg, ahol a választott gyógyszer adatait lehet beviteli mezők segítségével módosítani.
+- A ***Mentés*** gombra kattintva a program az adatbázisba menti a módosított adatokat.
+- A ***x*** ikonra kattintva mentés nélkül záródik be az oldal.
+- Bármelyik gomb megnyomásának hatására az összes gyógyszert listázó oldalra navigál vissza az alkalmazás.
+
+---
+
+**Delete:**
+
+> _Az ***Törlés*** gombra kattintva egy lakó törölhető az adatbázisból._
+
+- Az ***Törlés*** gombra való kattintással az alkalmazás törli a gyógyszert az adatbázisból.
+- A gombra kattintva az alkalmazás ellenőrzi, hogy az adott gyógyszert szedi-e valaki, van-e belőle gyógyszer vagy vénykészlet. Bármelyik esetben egy modális tájékoztató ablak jelenik meg a megfelelő tájékozatató szöveggel. Ha egyik kizáró tényező sem áll fenn, akkor egy törlést megerősítő modális ablak jön fel. 
+- A ***Törlés*** gombra kattintva a program az adatbázisból törli az adott gyógyszert.
+- A ***x*** ikonra kattintva törlés nélkül záródik be az oldal.
+- Bármelyik gomb megnyomásának hatására az összes gyógyszert listázó oldalra navigál vissza az alkalmazás.
+
+---
+
+**Szabadszavas keresés:**
+
+> _Egy szabadszavas beviteli mező segítségével bármilyen kulcsszóra lehet keresni az adatbázisban._
+
+- A mező kiválasztása és a keresendő kifejezés megadása után a ***Keresés*** gombra való kattintással az alkalmazás kikeresi a kulcsszónak megfelelő entitásokat az adatbázisból, és listázza azokat.
+
+---
+
+**Rendezés:**
+
+> _A lista oszlopainak fejlécére való kattintással növekvő és csökkenő sorrendbe rendezhetőek a szám típusú adatok, illetve abc-sorrendbe, valamint fordított abc-sorrendbe rendezhetőek a szöveges adatok._
+
+- A fejlécre való kattintás után a fejléc mellett megjelenik a rendezés irányát jelző ikon.
+- Első kattintásra a lista a mező szerint először növekvő (abc)sorrendbe, a következő kattintásra csökkenő (abc)sorrendbe, míg a harmadik kattintásra a default sorrendbe lesz rendezve.
 
 ---
 ---
