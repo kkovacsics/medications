@@ -229,7 +229,7 @@ Ezek az adatok a következők:
 ---
 ---
 
-## _**4. A lakók-gyógyszerezés adatbázis**_
+## _**5. A lakók-gyógyszerezés adatbázis**_
 
 ---
 
@@ -242,13 +242,13 @@ Ezek az adatok a következők:
 **Komponens neve:** medication  
 **Komponens helye:** page/medication
 
-Ezen az oldalon megjelenik az idősotthonban lakók és az általuk szedett valamennyi gyógyszer és a gyógyszerek adagolása._
+Ezen az oldalon megjelenik az idősotthonban lakók és az általuk szedett valamennyi gyógyszer és a gyógyszerek adagolása.
 
 Ezek az adatok a következők:
 - id (lakó azonosító)
 - name (lakó neve)
 - medications (gyógyszerezés)
-    [{medicine, dosages[3]}]
+    [{medicine, dosages[3]}] ({gyógyszer, adagolások})
 
 ---
 
@@ -256,7 +256,7 @@ Ezek az adatok a következők:
 
 > _Az ***Új lakó gyógyszerezése*** gombra kattintva egy űrlap segítségével egy új lakó gyógyszerezésének az adatai vehetők fel és menthetők az adatbázisban._
 
-- Az ***Új lakó gyógyszerezése*** gombra való kattintással egy új oldal nyílik meg, ahol az adott lakóhoz új gyógyszert lehet felvenni és az adagolást beállítani. Az oldalon az ***Új gyógyszer*** gomb megnyomására a gyógyszer kiválasztásához egy a gyógyszerek neveit tartalmazó lista, az adagolás megadásához beviteli mezők (reggel, délben, este) jelennek meg.
+- Az ***Új lakó gyógyszerezése*** gombra való kattintással egy új oldal nyílik meg, ahol a lakóhoz (akinek még nincs beállítva a gyógyszerezése) új gyógyszert lehet felvenni és az adagolást beállítani. Az oldalon az "új" lakót egy legördülő listából lehet kiválasztani. Az ***Új gyógyszer*** gomb megnyomására a gyógyszer kiválasztásához egy a gyógyszerek neveit tartalmazó lista, az adagolás megadásához beviteli mezők (reggel, délben, este) jelennek meg.
 - A ***Mentés*** gombra kattintva a program az adatbázisba menti a megadott adatokat.
 - A ***x*** ikonra kattintva mentés nélkül záródik be az oldal.
 - Bármelyik gomb megnyomásának hatására az összes lakók-gyógyszerezést listázó oldalra navigál vissza az alkalmazás.
@@ -271,6 +271,70 @@ Ezek az adatok a következők:
 - A ***Mentés*** gombra kattintva a program az adatbázisba menti a módosított adatokat.
 - A ***x*** ikonra kattintva mentés nélkül záródik be az oldal.
 - Bármelyik gomb megnyomásának hatására az összes lakók-gyógyszerezést listázó oldalra navigál vissza az alkalmazás.
+
+---
+
+**Szabadszavas keresés:**
+
+> _Egy szabadszavas beviteli mező segítségével bármilyen kulcsszóra lehet keresni az adatbázisban._
+
+- A mező kiválasztása és a keresendő kifejezés megadása után a ***Keresés*** gombra való kattintással az alkalmazás kikeresi a kulcsszónak megfelelő entitásokat az adatbázisból, és listázza azokat.
+
+---
+
+**Rendezés:**
+
+> _A lista oszlopainak fejlécére való kattintással növekvő és csökkenő sorrendbe rendezhetőek a szám típusú adatok, illetve abc-sorrendbe, valamint fordított abc-sorrendbe rendezhetőek a szöveges adatok._
+
+- A fejlécre való kattintás után a fejléc mellett megjelenik a rendezés irányát jelző ikon.
+- Első kattintásra a lista a mező szerint először növekvő (abc)sorrendbe, a következő kattintásra csökkenő (abc)sorrendbe, míg a harmadik kattintásra a default sorrendbe lesz rendezve.
+
+---
+---
+
+## _**6. Lakók-gyógyszerkészlet és vénykészlet adatbázis**_
+
+---
+
+**Osztály helye:** model/stock
+**Osztály neve:** stock   
+
+**Service neve:** stock  
+**Osztály helye:** service/stock
+
+**Komponens neve:** stock  
+**Komponens helye:** page/stock
+
+Ezen az oldalon megjelenő listában az idősotthonban lakók és a nevükre kiváltott valamennyi gyógyszerből a még nem kiosztott készlet és a nevükre kiállított, de még be nem váltott vények (a vényen szereplő gyógyszer) láthatóak.
+
+Ezek az adatok a következők:
+- id (lakó azonosító)
+- name (lakó neve)
+- medicines(gyógyszer)
+    [{medicine, stock}] ({gyógyszer, készlet})
+- recipes(recept)
+    [{medicine, piece}] ({gyógyszer, darab})
+---
+
+**Create:**
+
+> _Az ***Új lakó készletezése*** gombra kattintva egy űrlap segítségével egy új lakó gyógyszer és vénykészletének az adatai vehetők fel és menthetők az adatbázisban._
+
+- Az ***Új lakó készletezése*** gombra való kattintással egy új oldal nyílik meg, ahol a lakóhoz (akinek még nem szerepel a készlet listában) új készletet lehet beállítani. Az oldalon az "új" lakót egy legördülő listából lehet kiválasztani. Az oldalon az ***Új gyógyszer*** gomb megnyomására a gyógyszer kiválasztásához egy a gyógyszerek neveit tartalmazó lista, a készlet típusához (gyógyszer/vény) szinén egy lista, a készlet megadásához egy beviteli mező jelenik meg.
+- A ***Mentés*** gombra kattintva a program az adatbázisba menti a megadott adatokat.
+- A ***x*** ikonra kattintva mentés nélkül záródik be az oldal.
+- Bármelyik gomb megnyomásának hatására az összes lakók-készletek listázó oldalra navigál vissza az alkalmazás.
+
+---
+
+**Update:**
+
+> _A ***Módosítás*** gombra kattintva egy űrlap segítségével a készletezés adatai szerkeszthetők és menthetők az adatbázisban._
+
+- A ***Módosítás*** gombra való kattintással megnyíló új oldalon az adott lakó gyógyszer és vénykészlete látható. Az adatok közvetlenül a listában szerkeszthetőek. A lista végén szereplő ***Törlés*** gombbal lehetőség van a gyógyszer eltávolítására a listából, illetve az ***Új gyógyszer*** gomb megnyomására az előző ponthoz hasonlóan új gyógyszer/vénykészletet állíthatunk be. Ha a lakó valamennyi gyógyszer készletét eltávolítjuk a listából, azzal valójában a lakót távolítjuk el a lakók-készletek adatbázisból.
+- A ***Mentés*** gombra kattintva a program az adatbázisba menti a módosított adatokat.
+- A ***x*** ikonra kattintva mentés nélkül záródik be az oldal.
+- Bármelyik gomb megnyomásának hatására az összes lakók-készletek listázó oldalra navigál vissza az alkalmazás.
 
 ---
 
