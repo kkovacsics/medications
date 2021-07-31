@@ -1,0 +1,25 @@
+<div class="container px-4">
+  <h1 class="h3 mt-4">{{ title }}</h1>
+  <div class="card mb-4">
+      <div class="card-header">
+          <i class="fas fa-table me-1"></i>
+          DataTable Example
+      </div>
+      <div class="card-body">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th *ngFor="let col of columns">{{ col.title }}</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let row of list$ | async">
+                      <td *ngFor="let col of columns">{{ row[col.key] }}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+

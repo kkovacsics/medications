@@ -1,0 +1,28 @@
+<!-- <p>login works!</p>
+<button class="btn btn-success" (click)="setPassword()">
+  Set Password
+</button> -->
+
+<div class="container px-4">
+  <h1 class="h3 mt-4">Bejelentkezés</h1>
+  <div class="card mb-4 col-xl-4 col-lg-6 col-md-8 col-sm-12">
+    <div class="card-body">
+      <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-control" type="email" id="email" name="email" [(ngModel)]="user.email" required autofocus>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input class="form-control" type="password" id="password" name="password" [(ngModel)]="user.password" required>
+        </div>
+        <button type="submit" class="btn btn-primary col-12 mt-3" [disabled]="loginForm.invalid">
+          <i class="fas fa-sign-in-alt"></i>
+        </button>
+        <div *ngIf="serverError && loginForm.submitted" class="alert alert-danger mt-3">
+          {{ serverError }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

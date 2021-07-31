@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule} from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,11 @@ import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { ResidentComponent } from './page/resident/resident.component';
 import { MedicineComponent } from './page/medicine/medicine.component';
 import { MedicationComponent } from './page/medication/medication.component';
+import { UsersComponent } from './page/users/users.component';
+import { DataTableComponent } from './common/data-table/data-table.component';
+import { LoginComponent } from './page/login/login.component';
+import { JwtInterceptorService } from './service/jwt-interceptor.service';
+import { ForbiddenComponent } from './common/forbidden/forbidden.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,11 @@ import { MedicationComponent } from './page/medication/medication.component';
     DashboardComponent,
     ResidentComponent,
     MedicineComponent,
-    MedicationComponent
+    MedicationComponent,
+    UsersComponent,
+    DataTableComponent,
+    LoginComponent,
+    ForbiddenComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +37,9 @@ import { MedicationComponent } from './page/medication/medication.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

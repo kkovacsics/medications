@@ -99,8 +99,8 @@ Ezek az adatok a következők:
 - name (név)
 - dob (date of birth - születési dátum)
 - pob (place of birth - születési hely)
-- motherName (anyja neve)
-- SIN (Social Insurance Number - TAJ szán)
+- mother (anyja neve)
+- sin (Social Insurance Number - TAJ szám)
 - movingIn (beköltözés ideje)
 - movingOut (kiköltözés ideje)
 
