@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ConfigService, ITableColumn } from 'src/app/service/config.service';
 
@@ -12,12 +12,21 @@ export class DataTableComponent<T extends {[propname: string]: any}> implements 
   @Input() columns: ITableColumn[] = []
   @Input() title: string = ''
   @Input() list$: Observable<T[]> | null = null
+  @Input() entity: string = ''
+
+  @Output() deleteEvent = new EventEmitter()
 
   constructor(
     private config: ConfigService,
   ) { }
 
   ngOnInit(): void {
+  }
+
+  onDelete(item: any): void {
+    if (confirm('Valóban törölni akarod?')) {
+      this.deleteEvent.emit(item)
+    }
   }
 
 }

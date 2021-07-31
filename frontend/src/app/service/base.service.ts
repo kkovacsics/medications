@@ -6,7 +6,7 @@ import { ConfigService } from './config.service';
 @Injectable({
   providedIn: 'root'
 })
-export class BaseService<T extends {id?: number | string}> {
+export class BaseService<T extends {_id?: string}> {
 
   entity: string = ''
 
@@ -29,7 +29,7 @@ export class BaseService<T extends {id?: number | string}> {
   }
 
   update(item: T): Observable<T> {
-    const url = `${this.config.apiUrl}${this.entity}/${item.id}`;
+    const url = `${this.config.apiUrl}${this.entity}/${item._id}`;
     return this.http.patch<T>(url, item);
   }
 
@@ -39,7 +39,14 @@ export class BaseService<T extends {id?: number | string}> {
   }
 
   delete(item: T): Observable<T> {
-    const url = `${this.config.apiUrl}${this.entity}/${item.id}`;
+    const url = `${this.config.apiUrl}${this.entity}/${item._id}`;
     return this.http.delete<T>(url);
-  } 
+  }
+  
+  mongoObjectId = () => {
+    var timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+    return timestamp +
+      'xxxxxxxxxxxxxxxx'.replace(/[x]/g, () => (Math.random() * 16 | 0).toString(16)).toLowerCase();
+  }
+  
 }

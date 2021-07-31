@@ -1,9 +1,10 @@
 <div class="container px-4">
   <h1 class="h3 mt-4">{{ title }}</h1>
   <div class="card mb-4">
-      <div class="card-header">
-          <i class="fas fa-table me-1"></i>
-          DataTable Example
+      <div class="card-header d-flex">
+        <button class="btn btn-success ms-auto px-5" [routerLink]="['/', entity, 0]">
+          <i class="fas fa-plus"></i>
+        </button>
       </div>
       <div class="card-body">
           <table class="table table-striped">
@@ -16,6 +17,19 @@
               <tbody>
                   <tr *ngFor="let row of list$ | async">
                       <td *ngFor="let col of columns">{{ row[col.key] }}</td>
+                      <td>
+                        <div class="btn-group special">
+                          <button
+                              [routerLink]="['/', entity, row._id]"
+                              class="btn btn-info btn-sm">
+                              <i class="fas fa-pencil-alt"></i>
+                          </button>
+                          <button class="btn btn-danger btn-sm"
+                              (click)="onDelete(row)">
+                              <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </div>
+                      </td>
                   </tr>
               </tbody>
           </table>

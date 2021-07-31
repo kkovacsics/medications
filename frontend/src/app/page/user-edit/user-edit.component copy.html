@@ -1,0 +1,37 @@
+<div class="container px-4">
+  <h1 class="h3 mt-4">{{ title }}</h1>
+  <div class="card mb-4 col-xl-4 col-lg-6 col-md-8 col-sm-12">
+    <div class="card-body">
+      <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+        <div class="form-group">
+          <label for="name">Név</label>
+          <input class="form-control" type="text" id="name" name="name" [(ngModel)]="user.name" [required]="editColumns[0].required || ''" [pattern]="editColumns[0].pattern || ''">
+          <div [hidden]="userForm.controls[editColumns[0].key]?.valid" class="error-message">{{ editColumns[0].error }}</div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-control" type="email" id="email" name="email" [(ngModel)]="user.email" required pattern="[\w-\.]+@([\w-]+\.)+[\w-]{2,4}">
+          <div [hidden]="userForm.controls.email?.valid" class="error-message">Kötelező, érvényes email cím!</div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input class="form-control" type="password" id="password" name="password" [(ngModel)]="user.password" pattern=".{4,}">
+          <div [hidden]="userForm.controls.password?.valid" class="error-message">Minimum 4 karakter!</div>
+        </div>
+        <div class="form-group">
+          <label for="role">Engedély</label>
+          <select class="form-control" id="role" name="role" [(ngModel)]="user.role" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary col-12 mt-3" [disabled]="userForm.invalid">
+          <i class="far fa-save"></i>
+        </button>
+        <div *ngIf="serverError && userForm.submitted" class="alert alert-danger mt-3">
+          {{ serverError }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -8,14 +8,16 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './common/navigation/navigation.component';
 import { SideNavigationComponent } from './common/side-navigation/side-navigation.component';
 import { DashboardComponent } from './page/dashboard/dashboard.component';
-import { ResidentComponent } from './page/resident/resident.component';
-import { MedicineComponent } from './page/medicine/medicine.component';
-import { MedicationComponent } from './page/medication/medication.component';
+import { ResidentsComponent } from './page/residents/residents.component';
+import { MedicinesComponent } from './page/medicines/medicines.component';
+import { MedicationsComponent } from './page/medications/medications.component';
 import { UsersComponent } from './page/users/users.component';
 import { DataTableComponent } from './common/data-table/data-table.component';
 import { LoginComponent } from './page/login/login.component';
 import { JwtInterceptorService } from './service/jwt-interceptor.service';
 import { ForbiddenComponent } from './common/forbidden/forbidden.component';
+import { UserEditComponent } from './page/user-edit/user-edit.component';
+import { DataEditComponent } from './common/data-edit/data-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,15 @@ import { ForbiddenComponent } from './common/forbidden/forbidden.component';
     NavigationComponent,
     SideNavigationComponent,
     DashboardComponent,
-    ResidentComponent,
-    MedicineComponent,
-    MedicationComponent,
+    ResidentsComponent,
+    MedicinesComponent,
+    MedicationsComponent,
     UsersComponent,
     DataTableComponent,
     LoginComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    UserEditComponent,
+    DataEditComponent
   ],
   imports: [
     BrowserModule,

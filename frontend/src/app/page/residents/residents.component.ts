@@ -6,10 +6,10 @@ import { ResidentService } from 'src/app/service/resident.service';
 
 @Component({
   selector: 'app-resident',
-  templateUrl: './resident.component.html',
-  styleUrls: ['./resident.component.scss']
+  templateUrl: './residents.component.html',
+  styleUrls: ['./residents.component.scss']
 })
-export class ResidentComponent implements OnInit {
+export class ResidentsComponent implements OnInit {
 
   tableColumns = this.config.residentColumns
   title = 'Lakók'
