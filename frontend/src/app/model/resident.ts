@@ -1,6 +1,6 @@
 export class Resident {
   [key: string]: any;
-  _id: string = '';
+  _id: string = '0';
   name: string = '';
   mother: string = '';
   dob: string = '';

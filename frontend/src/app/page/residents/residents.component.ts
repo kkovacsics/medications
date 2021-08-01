@@ -13,6 +13,7 @@ export class ResidentsComponent implements OnInit {
 
   tableColumns = this.config.residentColumns
   title = 'Lakók'
+  entity = 'resident'
   list$: Observable<Resident[]> = this.residentService.get()
 
   constructor(
@@ -21,6 +22,12 @@ export class ResidentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+  }
+
+  delete(item: Resident) {
+    this.residentService.delete(item).subscribe(
+      () => this.list$ = this.residentService.get()
+    )
   }
 
 }

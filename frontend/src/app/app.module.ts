@@ -18,6 +18,11 @@ import { JwtInterceptorService } from './service/jwt-interceptor.service';
 import { ForbiddenComponent } from './common/forbidden/forbidden.component';
 import { UserEditComponent } from './page/user-edit/user-edit.component';
 import { DataEditComponent } from './common/data-edit/data-edit.component';
+import { ResidentEditComponent } from './page/resident-edit/resident-edit.component';
+import { MedicineEditComponent } from './page/medicine-edit/medicine-edit.component';
+import { MedicationEditComponent } from './page/medication-edit/medication-edit.component';
+import { StocksComponent } from './page/stocks/stocks.component';
+import { StockEditComponent } from './page/stock-edit/stock-edit.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,12 @@ import { DataEditComponent } from './common/data-edit/data-edit.component';
     LoginComponent,
     ForbiddenComponent,
     UserEditComponent,
-    DataEditComponent
+    DataEditComponent,
+    ResidentEditComponent,
+    MedicineEditComponent,
+    MedicationEditComponent,
+    StocksComponent,
+    StockEditComponent
   ],
   imports: [
     BrowserModule,

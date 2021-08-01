@@ -25,8 +25,8 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  delete(user: User) {
-    this.userService.delete(user).subscribe(
+  delete(item: User) {
+    this.userService.delete(item).subscribe(
       () => this.list$ = this.userService.get()
     )
   }

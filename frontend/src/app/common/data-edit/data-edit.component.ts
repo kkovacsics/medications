@@ -15,7 +15,8 @@ export class DataEditComponent implements OnInit {
   @Input() columns: ITableColumn[] = []
   @Input() title: string = ''
   @Input() serverError: string = ''
-  @Input() selectOptions: ISelectOption[] = []
+  @Input() selectOptions1: ISelectOption[] = []
+  @Input() selectOptions2: ISelectOption[] = []
 
   @Output() submitEvent = new EventEmitter()
 

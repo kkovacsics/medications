@@ -13,11 +13,11 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserEditComponent implements OnInit {
 
-  user: User = new User()
+  item: User = new User()
   serverError = ''
-  editColumns = this.config.userColumns
+  columns = this.config.userColumns
   title = 'Felhasználó'
-  selectOptions: ISelectOption[] = []
+  selectOptions1: ISelectOption[] = []
 
   constructor(
     private config: ConfigService,
@@ -42,15 +42,15 @@ export class UserEditComponent implements OnInit {
     //     this.user.password = ''
     //   })
 
-    this.selectOptions = this.getSelectOptions()
-    
+    this.selectOptions1 = this.getSelectOptions()
+
     this.activatedRoute.params.subscribe( params=> {
       if (params.id === '0') {
-        this.user = new User()
+        this.item = new User()
       } else {
-        this.userService.get(params.id).subscribe( user => {
-          this.user = user as User
-          this.user.password = ''
+        this.userService.get(params.id).subscribe( item => {
+          this.item = item as User
+          this.item.password = ''
         })
       }
     })
@@ -59,33 +59,30 @@ export class UserEditComponent implements OnInit {
 
   onSubmit(ngForm: NgForm): void {
     let observ$
-    if (!this.user.password) { // ha nem adott meg semmit, meghagyjuk a régit
-      delete this.user.password
+    if (!this.item.password) { // ha nem adott meg semmit, meghagyjuk a régit
+      delete this.item.password
     }
-    if (this.user._id === '0') {
-      this.user._id = this.userService.mongoObjectId()
-      observ$ = this.userService.create(this.user)
+    if (this.item._id === '0') {
+      this.item._id = this.userService.mongoObjectId()
+      observ$ = this.userService.create(this.item)
     } else {
-      observ$ = this.userService.update(this.user)
+      observ$ = this.userService.update(this.item)
     }
     observ$.toPromise().then(
-        user => history.back(),
-        err => {
-          this.serverError = err.error
-          const to = setTimeout( () => {
-            clearTimeout(to)
-            this.serverError = ''
-          }, 3000)
-        }
-      )
+      item => history.back(),
+      err => {
+        this.serverError = err.error
+        const to = setTimeout( () => {
+          clearTimeout(to)
+          this.serverError = ''
+        }, 3000)
+      }
+    )
   }
 
   getSelectOptions = (): ISelectOption[] => {
-    let select = this.editColumns.find(item => item.type === 'select')
-    if (!select) {
-      return [] 
-    }
-    return select.selectOpt? select.selectOpt: []
+    let select = this.columns.find(item => item.type === 'select1')
+    return select?.selectOpts1? select.selectOpts1: []
   }
 
 }

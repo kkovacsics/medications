@@ -1,1 +1,9 @@
-<p>medication works!</p>
+<app-data-table 
+  [title]="title" 
+  [columns]="tableColumns"
+  [list$]="list$"
+  [entity]="entity"
+  (deleteEvent)="delete($event)"
+>
+</app-data-table>
+
