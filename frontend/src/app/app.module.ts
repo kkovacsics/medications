@@ -23,6 +23,8 @@ import { MedicineEditComponent } from './page/medicine-edit/medicine-edit.compon
 import { MedicationEditComponent } from './page/medication-edit/medication-edit.component';
 import { StocksComponent } from './page/stocks/stocks.component';
 import { StockEditComponent } from './page/stock-edit/stock-edit.component';
+import { FilterPipe } from './pipe/filter.pipe';
+import { SorterPipe } from './pipe/sorter.pipe';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { StockEditComponent } from './page/stock-edit/stock-edit.component';
     MedicineEditComponent,
     MedicationEditComponent,
     StocksComponent,
-    StockEditComponent
+    StockEditComponent,
+    FilterPipe,
+    SorterPipe
   ],
   imports: [
     BrowserModule,

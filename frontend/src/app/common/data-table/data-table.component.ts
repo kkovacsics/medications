@@ -16,6 +16,10 @@ export class DataTableComponent<T extends {[propname: string]: any}> implements 
 
   @Output() deleteEvent = new EventEmitter()
 
+  phrase = ''
+  sortKey = ''
+  sortDirection = false
+
   constructor(
     private config: ConfigService,
   ) { }
@@ -26,6 +30,15 @@ export class DataTableComponent<T extends {[propname: string]: any}> implements 
   onDelete(item: any): void {
     if (confirm('Valóban törölni akarod?')) {
       this.deleteEvent.emit(item)
+    }
+  }
+
+  onColumnClick(key: string): void {
+    if (this.sortKey === key) {
+      this.sortDirection = !this.sortDirection
+    } else {
+      this.sortKey = key
+      this.sortDirection = true
     }
   }
 
