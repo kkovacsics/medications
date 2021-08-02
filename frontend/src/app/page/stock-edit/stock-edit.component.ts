@@ -32,9 +32,11 @@ export class StockEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.residentService.get()
-      .pipe( tap( residents => this.selectOptions1 = residents.map(resident => ({k: resident._id, v: resident.name}))) )
+      .pipe( tap(residents => this.selectOptions1 = residents.map(resident => ({ k: resident._id, v: resident.name }))
+                                                  .sort( (a,b) => a.v.toLowerCase().localeCompare(b.v.toLowerCase()) ) ) )
       .pipe( switchMap( () => this.medicineService.get() ) )
-      .pipe( tap( medicines => this.selectOptions2 = medicines.map(medicine => ({k: medicine._id, v: medicine.name}))) )
+      .pipe( tap(medicines => this.selectOptions2 = medicines.map(medicine => ({ k: medicine._id, v: medicine.name }))
+                                                  .sort( (a,b) => a.v.toLowerCase().localeCompare(b.v.toLowerCase()) ) ) )
       .pipe( tap( medicines => {
         this.activatedRoute.params.subscribe(params => {
           if (params.id === '0') {
