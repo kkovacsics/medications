@@ -18,7 +18,7 @@ export class DataTableComponent<T extends {[propname: string]: any}> implements 
 
   phrase = ''
   sortKey = ''
-  sortDirection = false
+  sortAscending = false
 
   constructor(
     private config: ConfigService,
@@ -35,10 +35,10 @@ export class DataTableComponent<T extends {[propname: string]: any}> implements 
 
   onColumnClick(key: string): void {
     if (this.sortKey === key) {
-      this.sortDirection = !this.sortDirection
+      this.sortAscending = !this.sortAscending
     } else {
       this.sortKey = key
-      this.sortDirection = true
+      this.sortAscending = true
     }
   }
 

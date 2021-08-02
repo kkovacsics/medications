@@ -11,7 +11,8 @@ import { ConfigService } from 'src/app/service/config.service';
 })
 export class SideNavigationComponent implements OnInit {
 
-  navigation = this.config.navigation
+  navList = this.config.navList
+  navAction = this.config.navAction
   user$: BehaviorSubject<User | null> = this.auth.currentUserSubject$
 
   constructor(

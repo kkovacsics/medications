@@ -51,7 +51,12 @@
                   </nav>
               </div> -->
               <div class="sb-sidenav-menu-heading">Adatok</div>
-              <a *ngFor="let link of navigation" class="nav-link" [routerLink]="link.href">
+              <a *ngFor="let link of navList" class="nav-link" [routerLink]="link.href">
+                  <div class="sb-nav-link-icon"><i [class]="link.icon"></i></div>
+                  {{ link.label }}
+              </a>
+              <div class="sb-sidenav-menu-heading">Műveletek</div>
+              <a *ngFor="let link of navAction" class="nav-link" [routerLink]="link.href">
                   <div class="sb-nav-link-icon"><i [class]="link.icon"></i></div>
                   {{ link.label }}
               </a>

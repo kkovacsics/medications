@@ -1,22 +1,24 @@
-<div class="container-fluid px-4">
-  <h1 class="mt-4">Sidenav Light</h1>
-  <ol class="breadcrumb mb-4">
-      <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-      <li class="breadcrumb-item active">Sidenav Light</li>
-  </ol>
-  <div class="card mb-4">
-      <div class="card-body">
-          This page is an example of using the light side navigation option. By appending the
-          <code>.sb-sidenav-light</code>
-          class to the
-          <code>.sb-sidenav</code>
-          class, the side navigation will take on a light color scheme. The
-          <code>.sb-sidenav-dark</code>
-          is also available for a darker option.
-      </div>
-      <!-- <div style="height: 100vh"></div> -->
-      <div class="card mb-4">
-        <div class="card-body">When scrolling, the navigation stays at the top of the page. This is the end of the static navigation demo.</div>
-      </div>
+<div class="container px-4">
+  <h1 class="h3 my-4">Vezérlőpult</h1>
+  <div class="card shadow-sm col-xxl-3 col-xl-4 col-lg-6 col-md-8 col-sm-10 col-xs-12 mb-4">
+    <div class="card-header">
+          <i class="fas fa-user-friends fa-fw fa-2x me-1"></i>
+          <span>Lakók száma [fő]:</span>
+    </div>
+    <div class="card-body"><p class="m-0">{{residentNumber}}</p></div>
+  </div>
+  <div class="card shadow-sm col-xxl-3 col-xl-4 col-lg-6 col-md-8 col-sm-10 col-xs-12 mb-4">
+    <div class="card-header">
+        <i class="fas fa-hand-holding-medical fa-fw fa-2x me-1"></i>
+        <span>Gyógyszer ellátás alatt [fő]:</span>
+    </div>
+    <div class="card-body"><p class="m-0">{{medicationNumber}}</p></div>
+  </div>
+  <div class="card shadow-sm col-xxl-3 col-xl-4 col-lg-6 col-md-8 col-sm-10 col-xs-12 mb-4">
+    <div class="card-header">
+        <i class="fas fa-prescription-bottle-alt fa-fw fa-2x me-1"></i>
+        <span>Gyógyszerkészlet elegendő [hét]:</span>
+    </div>
+    <div class="card-body" [class.error]="!periodMoreThanOneWeek"><p class="m-0">{{medicationPeriod.toFixed(2)}}</p></div>
   </div>
 </div>

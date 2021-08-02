@@ -1,14 +1,30 @@
 <div class="container px-4">
   <h1 class="h3 mt-4">{{ title }}</h1>
   <div class="card shadow-sm mb-4">
-      <div class="card-header d-flex">
-        <div class="form-group">
+      <div class="card-header d-md-flex">
+        <div class="form-group col-md-auto col-12 me-5">
           <input class="form-control" type="text" placeholder="Keresés..." [(ngModel)]="phrase">
         </div>
 
-        <button class="btn btn-success ms-auto px-5" [routerLink]="['/', entity, 0]">
-          <i class="fas fa-plus"></i>
-        </button>
+        <div class="row align-items-center">
+          <div class="col-md-auto col-12  mt-2 mt-md-0">
+            <label for="week">A készlet kevesebb, mint </label>
+          </div>
+          <div class="col-auto">
+            <select class="form-select" id="week" name="week" [(ngModel)]="week" (change)="onWeekChanged()" required>
+              <option value="1">1 hét</option>
+              <option value="2">2 hét</option>
+              <option value="3">3 hét</option>
+              <option value="4">4 hét</option>
+            </select>
+           </div>
+        </div>
+
+        <div class="form-group col-md-auto col-12 ms-auto mt-2 mt-md-0">
+          <button class="btn btn-success px-5" (click)="onSave()">
+            <i class="fas fa-check"></i>
+          </button>
+        </div>
       </div>
       <div class="card-body">
           <table class="table table-striped">
@@ -19,25 +35,11 @@
                         <span *ngIf="col.key===sortKey && sortAscending"><i class="fas fa-sort-up"></i></span>
                         <span *ngIf="col.key===sortKey && !sortAscending"><i class="fas fa-sort-down"></i></span>
                       </th>
-                      <th></th>
                   </tr>
               </thead>
               <tbody>
                   <tr *ngFor="let row of list$ | async | filter:columns:phrase | sorter:sortKey:sortAscending">
                       <td *ngFor="let col of columns">{{ row[col.key] }}</td>
-                      <td>
-                        <div class="btn-group special">
-                          <button
-                              [routerLink]="['/', entity, row._id]"
-                              class="btn btn-info btn-sm">
-                              <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button class="btn btn-danger btn-sm"
-                              (click)="onDelete(row)">
-                              <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </div>
-                      </td>
                   </tr>
               </tbody>
           </table>

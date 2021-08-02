@@ -38,6 +38,9 @@ export class MedicineEditComponent implements OnInit {
 
   onSubmit(ngForm: NgForm): void {
     let observ$
+
+    this.item.packing = Number(this.item.packing)
+  
     if (this.item._id === '0') {
       this.item._id = this.medicineService.mongoObjectId()
       observ$ = this.medicineService.create(this.item)

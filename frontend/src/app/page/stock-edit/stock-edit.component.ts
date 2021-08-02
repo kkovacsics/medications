@@ -59,10 +59,9 @@ export class StockEditComponent implements OnInit {
     delete(this.item.resident)
     delete(this.item.medicine)
     
-    this.item.morning = Number(this.item.morning)
-    this.item.afternoon = Number(this.item.afternoon)
-    this.item.evening = Number(this.item.evening)
-
+    this.item.medicines = Number(this.item.medicines)
+    this.item.recipes = Number(this.item.recipes)
+    
     if (this.item._id === '0') {
       this.item._id = this.stockService.mongoObjectId()
       observ$ = this.stockService.create(this.item)

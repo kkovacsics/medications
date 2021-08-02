@@ -9,7 +9,7 @@ export interface ITableColumn {
   selectOpts2?: any[];
   pattern?: string;
   error?: string;
-  pipeArgs?: any[][];
+  onlyList?: boolean;
 }
 
 export interface ISelectOption {
@@ -24,12 +24,16 @@ export class ConfigService {
 
   apiUrl = `http://localhost:3000/`;
 
-  navigation: {label: string, href: string, icon: string, role: number}[] = [
+  navList: {label: string, href: string, icon: string, role: number}[] = [
     {label: 'Lakók', href: '/residents', icon: 'fas fa-user-friends fa-fw', role: 1},
     {label: 'Gyógyszerek', href: '/medicines', icon: 'fas fa-file-medical fa-fw', role: 1},
     {label: 'Gyógyszerezés', href: '/medications', icon: 'fas fa-hand-holding-medical fa-fw', role: 2},
     {label: 'Gyógyszerkészlet', href: '/stocks', icon: 'fas fa-prescription-bottle-alt fa-fw', role: 1},
     {label: 'Felhasználók', href: '/users', icon: 'fas fa-user fa-fw', role: 2},
+  ];
+  navAction: {label: string, href: string, icon: string, role: number}[] = [
+    {label: 'Gyógyszer kiváltás', href: '/redeems', icon: 'fas fa-file-prescription fa-fw', role: 1},
+    {label: 'Gyógyszer kiosztás', href: '/pills', icon: 'fas fa-pills fa-fw', role: 1},
   ];
 
   userColumns: ITableColumn[] = [
@@ -67,8 +71,15 @@ export class ConfigService {
     {key: 'resident', title: 'Lakó', type: 'select1', required: true, error: "Kötelező!"},
     {key: 'medicine', title: 'Gyógyszer', type: 'select2', required: true, error: "Kötelező!"},
     {key: 'medicines', title: 'Gyógyszer[db]', type: 'number', required: true, error: "Kötelező, szám!"},
-    {key: 'recipes', title: 'Vény[db]', type: 'number', required: true, error: "Kötelező, szám!"},
+    {key: 'period', title: 'Ellátás[hét]', type: 'text', onlyList: true},
   ];
+
+  redeemsColumns: ITableColumn[] = [
+    {key: 'resident', title: 'Lakó', type: 'select1', required: true, error: "Kötelező!"},
+    {key: 'medicine', title: 'Gyógyszer', type: 'select2', required: true, error: "Kötelező!"},
+    {key: 'boxes', title: 'Doboz [db]', type: 'number', required: true, error: "Kötelező, szám!"},
+    {key: 'pills', title: 'Tabletta [db]', type: 'number', required: true, error: "Kötelező, szám!"},
+   ];
 
   constructor() { }
 }

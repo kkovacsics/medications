@@ -1,33 +1,35 @@
 <div class="container px-4">
   <h1 class="h3 mt-4">{{ title }}</h1>
-  <div class="card mb-4 col-xl-4 col-lg-6 col-md-8 col-sm-12">
+  <div class="card shadow-sm mb-4 col-xl-4 col-lg-6 col-md-8 col-sm-12">
     <div class="card-body">
       <form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">
         <ng-container *ngFor="let col of columns">
-          <div *ngIf="col.type!=='select1' && col.type!=='select2' && col.required" class="form-group">
-            <label [for]="col.key">{{col.title}}</label>
-            <input class="form-control" [type]="col.type" [id]="col.key" [name]="col.key" [(ngModel)]="item[col.key]" required [pattern]="col.pattern || ''">
-            <div [hidden]="editForm.controls[col.key]?.valid" class="error-message">{{ col.error }}</div>
-          </div>
-          <div *ngIf="col.type!=='select1' && col.type!=='select2' && !col.required" class="form-group">
-            <label [for]="col.key">{{col.title}}</label>
-            <input class="form-control" [type]="col.type" [id]="col.key" [name]="col.key" [(ngModel)]="item[col.key]" [pattern]="col.pattern || ''">
-            <div [hidden]="editForm.controls[col.key]?.valid" class="error-message">{{ col.error }}</div>
-          </div>
-          <div *ngIf="col.type==='select1'"class="form-group">
-            <label [for]="col.key">{{col.title}}</label>
-            <select class="form-control" [id]="col.key" [name]="col.key" [(ngModel)]="item[col.key]" required>
-              <option *ngFor="let opt of selectOptions1" [value]="opt.k">{{ opt.v }}</option>
-            </select>
-            <div [hidden]="editForm.controls[col.key]?.valid" class="error-message">{{ col.error }}</div>
-          </div>
-          <div *ngIf="col.type==='select2'"class="form-group">
-            <label [for]="col.key">{{col.title}}</label>
-            <select class="form-control" [id]="col.key" [name]="col.key" [(ngModel)]="item[col.key]" required>
-              <option *ngFor="let opt of selectOptions2" [value]="opt.k">{{ opt.v }}</option>
-            </select>
-            <div [hidden]="editForm.controls[col.key]?.valid" class="error-message">{{ col.error }}</div>
-          </div>
+          <ng-container *ngIf="!col.onlyList">
+            <div *ngIf="col.type!=='select1' && col.type!=='select2' && col.required" class="form-group">
+              <label [for]="col.key">{{col.title}}</label>
+              <input class="form-control" [type]="col.type" [id]="col.key" [name]="col.key" [(ngModel)]="item[col.key]" required [pattern]="col.pattern || ''">
+              <div [hidden]="editForm.controls[col.key]?.valid" class="error-message">{{ col.error }}</div>
+            </div>
+            <div *ngIf="col.type!=='select1' && col.type!=='select2' && !col.required" class="form-group">
+              <label [for]="col.key">{{col.title}}</label>
+              <input class="form-control" [type]="col.type" [id]="col.key" [name]="col.key" [(ngModel)]="item[col.key]" [pattern]="col.pattern || ''">
+              <div [hidden]="editForm.controls[col.key]?.valid" class="error-message">{{ col.error }}</div>
+            </div>
+            <div *ngIf="col.type==='select1'"class="form-group">
+              <label [for]="col.key">{{col.title}}</label>
+              <select class="form-select" [id]="col.key" [name]="col.key" [(ngModel)]="item[col.key]" required>
+                <option *ngFor="let opt of selectOptions1" [value]="opt.k">{{ opt.v }}</option>
+              </select>
+              <div [hidden]="editForm.controls[col.key]?.valid" class="error-message">{{ col.error }}</div>
+            </div>
+            <div *ngIf="col.type==='select2'"class="form-group">
+              <label [for]="col.key">{{col.title}}</label>
+              <select class="form-select" [id]="col.key" [name]="col.key" [(ngModel)]="item[col.key]" required>
+                <option *ngFor="let opt of selectOptions2" [value]="opt.k">{{ opt.v }}</option>
+              </select>
+              <div [hidden]="editForm.controls[col.key]?.valid" class="error-message">{{ col.error }}</div>
+            </div>
+          </ng-container>
         </ng-container>
         <button type="submit" class="btn btn-primary col-12 mt-3" [disabled]="editForm.invalid">
           <i class="far fa-save"></i>

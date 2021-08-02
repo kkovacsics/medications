@@ -6,7 +6,7 @@
           <input class="form-control" type="text" placeholder="Keresés..." [(ngModel)]="phrase">
         </div>
 
-        <button class="btn btn-success ms-auto px-5" [routerLink]="['/', entity, 0]">
+        <button class="btn btn-success ms-auto px-5" [routerLink]="['/']">
           <i class="fas fa-plus"></i>
         </button>
       </div>
@@ -19,25 +19,11 @@
                         <span *ngIf="col.key===sortKey && sortAscending"><i class="fas fa-sort-up"></i></span>
                         <span *ngIf="col.key===sortKey && !sortAscending"><i class="fas fa-sort-down"></i></span>
                       </th>
-                      <th></th>
                   </tr>
               </thead>
               <tbody>
                   <tr *ngFor="let row of list$ | async | filter:columns:phrase | sorter:sortKey:sortAscending">
                       <td *ngFor="let col of columns">{{ row[col.key] }}</td>
-                      <td>
-                        <div class="btn-group special">
-                          <button
-                              [routerLink]="['/', entity, row._id]"
-                              class="btn btn-info btn-sm">
-                              <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button class="btn btn-danger btn-sm"
-                              (click)="onDelete(row)">
-                              <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </div>
-                      </td>
                   </tr>
               </tbody>
           </table>
