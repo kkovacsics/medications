@@ -31,9 +31,9 @@ export class ConfigService {
     {label: 'Gyógyszerkészlet', href: '/stocks', icon: 'fas fa-prescription-bottle-alt fa-fw', role: 1},
     {label: 'Felhasználók', href: '/users', icon: 'fas fa-user fa-fw', role: 2},
   ];
-  navAction: {label: string, href: string, icon: string, role: number}[] = [
+  navAction: {label: string, href: string, icon: string, controllable?: boolean, role: number}[] = [
     {label: 'Gyógyszer kiváltás', href: '/redeems', icon: 'fas fa-file-prescription fa-fw', role: 1},
-    {label: 'Gyógyszer kiosztás', href: '/pills', icon: 'fas fa-pills fa-fw', role: 1},
+    {label: 'Gyógyszer kiosztás', href: '/pills', icon: 'fas fa-pills fa-fw', controllable: true, role: 1},
   ];
 
   userColumns: ITableColumn[] = [

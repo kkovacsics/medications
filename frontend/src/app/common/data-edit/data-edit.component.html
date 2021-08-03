@@ -31,7 +31,7 @@
             </div>
           </ng-container>
         </ng-container>
-        <button type="submit" class="btn btn-primary col-12 mt-3" [disabled]="editForm.invalid">
+        <button type="submit" class="btn btn-primary col-12 mt-3" title="Mentés" [disabled]="editForm.invalid">
           <i class="far fa-save"></i>
         </button>
         <div *ngIf="serverError && editForm.submitted" class="alert alert-danger mt-3">

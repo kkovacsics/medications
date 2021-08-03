@@ -6,11 +6,11 @@
           <input class="form-control" type="text" placeholder="Keresés..." [(ngModel)]="phrase">
         </div>
 
-        <div class="row align-items-center">
-          <div class="col-md-auto col-12  mt-2 mt-md-0">
-            <label for="week">A készlet kevesebb, mint </label>
+        <div class="row align-items-center mt-2 mt-md-0">
+          <div class="col-md-auto col-8">
+            <label class="d-flex justify-content-end" for="week">Ahol a készlet kevesebb, mint </label>
           </div>
-          <div class="col-auto">
+          <div class="col-md-auto col-4">
             <select class="form-select" id="week" name="week" [(ngModel)]="week" (change)="onWeekChanged()" required>
               <option value="1">1 hét</option>
               <option value="2">2 hét</option>
@@ -20,8 +20,8 @@
            </div>
         </div>
 
-        <div class="form-group col-md-auto col-12 ms-auto mt-2 mt-md-0">
-          <button class="btn btn-success px-5" (click)="onSave()">
+        <div class="form-group d-flex justify-content-end col-md-auto col-12 ms-auto mt-2 mt-md-0">
+          <button type="button" class="btn btn-success px-5" title="Elkészült" (click)="onSave()">
             <i class="fas fa-check"></i>
           </button>
         </div>

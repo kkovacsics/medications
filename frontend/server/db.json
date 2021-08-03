@@ -1296,28 +1296,28 @@
       "_id": "6106df3e83dad81c93d9510d",
       "residentId": "60f6ec52722978a2468a90b0",
       "medicineId": "61068ac752e5443a34322623",
-      "medicines": 180,
+      "medicines": 30,
       "recipes": 0
     },
     {
       "_id": "6106df3e0a0fdf012d218b3b",
       "residentId": "60f6ec52722978a2468a90b0",
       "medicineId": "61068ac709b531fd6668baa0",
-      "medicines": 126,
+      "medicines": 93,
       "recipes": 0
     },
     {
       "_id": "6106df3eef9175f3dad7decc",
       "residentId": "60f6ec52722978a2468a90b0",
       "medicineId": "61068ac7d16bc38e050a1c25",
-      "medicines": 240,
+      "medicines": 102,
       "recipes": 0
     },
     {
       "_id": "6106df3e474ef4504248bc00",
       "residentId": "60f6ec52aaaabd6055f98944",
       "medicineId": "61068ac7e8ce43e7779ab59d",
-      "medicines": 260,
+      "medicines": 190,
       "recipes": 0
     },
     {

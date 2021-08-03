@@ -6,8 +6,8 @@
           <input class="form-control" type="text" placeholder="Keresés..." [(ngModel)]="phrase">
         </div>
 
-        <button class="btn btn-success ms-auto px-5" [routerLink]="['/']">
-          <i class="fas fa-plus"></i>
+        <button type="button" class="btn btn-success ms-auto px-5" title="Elkészült" (click)="onSave()">
+          <i class="fas fa-check"></i>
         </button>
       </div>
       <div class="card-body">

@@ -21,9 +21,9 @@ import { StockService } from 'src/app/service/stock.service';
 export class RedeemsComponent implements OnInit {
 
   columns = this.config.redeemsColumns
-  title = 'Gyógyszer kiváltás'
+  title = 'Gyógyszer kiváltás (4 heti adag)'
   list$: Observable<Medication[]> = this.getMedications()
-  week = 2
+  week = 1
 
   residents: Resident[] = []
   medicines: Medicine[] = []
@@ -32,8 +32,8 @@ export class RedeemsComponent implements OnInit {
   filtered: Medication[] = []
 
   phrase = ''
-  sortKey = ''
-  sortAscending = false
+  sortKey = 'resident'
+  sortAscending = true
 
   constructor(
     private config: ConfigService,
@@ -62,7 +62,7 @@ export class RedeemsComponent implements OnInit {
             const medicineName = this.medicines.find( medicine => item.medicineId===medicine._id )?.name
             item.medicine = medicineName? medicineName: ''
             const stock = this.stocks.find(stock => item.residenId === stock.residenId &&
-                                                  item.medicineId === stock.medicineId) || new Stock()
+                                                    item.medicineId === stock.medicineId) || new Stock()
             item.stockId = stock._id || ''
             item.stock = stock.medicines || 0
             this.getMonthlyDose(item)
@@ -88,39 +88,31 @@ export class RedeemsComponent implements OnInit {
   }
 
   onSave(): void {
-    [...this.filtered].forEach(async medication => {
-      // const medication = this.medications[0]
-      const stock = new Stock()
-      stock._id = medication.stockId || ''
-      stock.residentId = medication.residentId
-      stock.medicineId = medication.medicineId
-      stock.medicines = (medication.stock || 0) + (medication.pills || 0)
-      stock.recipes = 0
-      delete (stock.resident)
-      delete (stock.medicine)
-      delete (stock.period)
-
-      const item = await this.stockService.update(stock).toPromise()
-      medication.stock = item.medicines
-      this.onWeekChanged()
-
-      // this.stockService.update(stock).toPromise().then(
-      //   item => {
-      //     medication.stock = item.medicines
-      //     this.onWeekChanged()
-      //   },
-      //   err => console.log(err.error)
-      // )
-
-    })
-    // console.log(this.filtered.length)
-    // if (!this.filtered.length) {
-    //   console.log('navigate')
-    //   this.router.navigate(['/'])
-    // }
-      
+    this.saveItem(0)
   }
 
+  async saveItem(id: number): Promise<void> {
+    const medication = this.filtered[id]
+    const stock = new Stock()
+    stock._id = medication.stockId || ''
+    stock.residentId = medication.residentId
+    stock.medicineId = medication.medicineId
+    stock.medicines = (medication.stock || 0) + (medication.pills || 0)
+    stock.recipes = 0
+    delete (stock.resident)
+    delete (stock.medicine)
+    delete (stock.period)
+
+    const item = await this.stockService.update(stock).toPromise()
+    medication.stock = item.medicines
+    // this.onWeekChanged()
+
+    if (++id < this.filtered.length) {
+      this.saveItem(id)
+    } else {
+      this.router.navigate(['/'])  
+    }
+  }
 
   onColumnClick(key: string): void {
     if (this.sortKey === key) {

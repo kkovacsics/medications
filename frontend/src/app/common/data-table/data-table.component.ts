@@ -17,8 +17,8 @@ export class DataTableComponent<T extends {[propname: string]: any}> implements 
   @Output() deleteEvent = new EventEmitter()
 
   phrase = ''
-  sortKey = ''
-  sortAscending = false
+  @Input() sortKey = ''
+  sortAscending = true
 
   constructor(
     private config: ConfigService,

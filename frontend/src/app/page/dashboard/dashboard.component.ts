@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { switchMap, tap } from 'rxjs/operators';
 import { Medication } from 'src/app/model/medication';
 import { Stock } from 'src/app/model/stock';
+import { StatisticService } from 'src/app/serice/statistic.service';
 import { MedicationService } from 'src/app/service/medication.service';
 import { ResidentService } from 'src/app/service/resident.service';
 import { StockService } from 'src/app/service/stock.service';
@@ -25,6 +26,7 @@ export class DashboardComponent implements OnInit {
     private residentService: ResidentService,
     private medicationService: MedicationService,
     private stockService: StockService,
+    private statisticService: StatisticService,
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +54,8 @@ export class DashboardComponent implements OnInit {
         period = (medication.stock || 0) / (medication.morning+medication.afternoon+medication.evening)
       }
     })
-    this.periodMoreThanOneWeek = period/7 >= 1
+    this.periodMoreThanOneWeek = period / 7 >= 1
+    this.statisticService.weeklyPeriod$.next(period/7)
     return period/7
   }
 }
