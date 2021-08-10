@@ -1,0 +1,7 @@
+{
+  "database": {
+    "username": "kkovacsics",
+    "password": "9sg9bc7Y8WXYUSN",
+    "host": "cluster0.kuyuz.mongodb.net/jestDB?retryWrites=true&w=majority"
+  }
+}

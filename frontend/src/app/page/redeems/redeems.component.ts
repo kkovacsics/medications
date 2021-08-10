@@ -32,7 +32,7 @@ export class RedeemsComponent implements OnInit {
   filtered: Medication[] = []
 
   phrase = ''
-  sortKey = 'resident'
+  sortKey = 'residentName'
   sortAscending = true
 
   constructor(
@@ -58,13 +58,13 @@ export class RedeemsComponent implements OnInit {
       .pipe( tap( items => {
           items.forEach( item => {
             const residentName = this.residents.find( resident => item.residentId===resident._id )?.name
-            item.resident = residentName? residentName: ''
+            item.residentName = residentName? residentName: ''
             const medicineName = this.medicines.find( medicine => item.medicineId===medicine._id )?.name
-            item.medicine = medicineName? medicineName: ''
+            item.medicineName = medicineName? medicineName: ''
             const stock = this.stocks.find(stock => item.residenId === stock.residenId &&
                                                     item.medicineId === stock.medicineId) || new Stock()
             item.stockId = stock._id || ''
-            item.stock = stock.medicines || 0
+            item.stock = stock.pills || 0
             this.getMonthlyDose(item)
           })
           this.medications = items
@@ -97,14 +97,14 @@ export class RedeemsComponent implements OnInit {
     stock._id = medication.stockId || ''
     stock.residentId = medication.residentId
     stock.medicineId = medication.medicineId
-    stock.medicines = (medication.stock || 0) + (medication.pills || 0)
+    stock.pills = (medication.stock || 0) + (medication.pills || 0)
     stock.recipes = 0
     delete (stock.resident)
     delete (stock.medicine)
     delete (stock.period)
 
     const item = await this.stockService.update(stock).toPromise()
-    medication.stock = item.medicines
+    medication.stock = item.pills
     // this.onWeekChanged()
 
     if (++id < this.filtered.length) {

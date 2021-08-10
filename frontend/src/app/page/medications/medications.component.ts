@@ -43,9 +43,9 @@ export class MedicationsComponent implements OnInit {
       .pipe( tap( items => {
           items.forEach( item => {
             const residentName = this.residents.find( resident => item.residentId===resident._id )?.name
-            item.resident = residentName? residentName: ''
+            item.residentName = residentName? residentName: ''
             const medicineName = this.medicines.find( medicine => item.medicineId===medicine._id )?.name
-            item.medicine = medicineName? medicineName: ''
+            item.medicineName = medicineName? medicineName: ''
           } )
         })
       )

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/model/user';
-import { StatisticService } from 'src/app/serice/statistic.service';
+import { StatisticService } from 'src/app/service/statistic.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { ConfigService } from 'src/app/service/config.service';
 

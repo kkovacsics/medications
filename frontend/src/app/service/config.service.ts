@@ -22,7 +22,7 @@ export interface ISelectOption {
 })
 export class ConfigService {
 
-  apiUrl = `http://localhost:3000/`;
+  apiUrl = `http://127.0.0.1:3000/`;
 
   navList: {label: string, href: string, icon: string, role: number}[] = [
     {label: 'Lakók', href: '/residents', icon: 'fas fa-user-friends fa-fw', role: 1},
@@ -60,23 +60,23 @@ export class ConfigService {
   ];
 
   medicationColumns: ITableColumn[] = [
-    {key: 'resident', title: 'Lakó', type: 'select1', required: true, error: "Kötelező!"},
-    {key: 'medicine', title: 'Gyógyszer', type: 'select2', required: true, error: "Kötelező!"},
+    {key: 'residentName', title: 'Lakó', type: 'select1', required: true, error: "Kötelező!"},
+    {key: 'medicineName', title: 'Gyógyszer', type: 'select2', required: true, error: "Kötelező!"},
     {key: 'morning', title: 'Reggel', type: 'number', required: true, error: "Kötelező, szám!"},
     {key: 'afternoon', title: 'Délben', type: 'number', required: true, error: "Kötelező, szám!"},
     {key: 'evening', title: 'Este', type: 'number', required: true, error: "Kötelező, szám!"},
   ];
 
   stockColumns: ITableColumn[] = [
-    {key: 'resident', title: 'Lakó', type: 'select1', required: true, error: "Kötelező!"},
-    {key: 'medicine', title: 'Gyógyszer', type: 'select2', required: true, error: "Kötelező!"},
-    {key: 'medicines', title: 'Gyógyszer[db]', type: 'number', required: true, error: "Kötelező, szám!"},
+    {key: 'residentName', title: 'Lakó', type: 'select1', required: true, error: "Kötelező!"},
+    {key: 'medicineName', title: 'Gyógyszer', type: 'select2', required: true, error: "Kötelező!"},
+    {key: 'pills', title: 'Gyógyszer[db]', type: 'number', required: true, error: "Kötelező, szám!"},
     {key: 'period', title: 'Ellátás[hét]', type: 'text', onlyList: true},
   ];
 
   redeemsColumns: ITableColumn[] = [
-    {key: 'resident', title: 'Lakó', type: 'select1', required: true, error: "Kötelező!"},
-    {key: 'medicine', title: 'Gyógyszer', type: 'select2', required: true, error: "Kötelező!"},
+    {key: 'residentName', title: 'Lakó', type: 'select1', required: true, error: "Kötelező!"},
+    {key: 'medicineName', title: 'Gyógyszer', type: 'select2', required: true, error: "Kötelező!"},
     {key: 'boxes', title: 'Doboz [db]', type: 'number', required: true, error: "Kötelező, szám!"},
     {key: 'pills', title: 'Tabletta [db]', type: 'number', required: true, error: "Kötelező, szám!"},
    ];

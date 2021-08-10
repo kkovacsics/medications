@@ -6,8 +6,8 @@ export class Medication {
   morning: number = 0;
   afternoon: number = 0;
   evening: number = 0;
-  resident?: string = '';
-  medicine?: string = '';
+  residentName?: string = '';
+  medicineName?: string = '';
   stock?: number = 0;
   stockId?: string = '';
   boxes?: number = 0;

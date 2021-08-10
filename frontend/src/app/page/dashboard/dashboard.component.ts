@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { switchMap, tap } from 'rxjs/operators';
 import { Medication } from 'src/app/model/medication';
 import { Stock } from 'src/app/model/stock';
-import { StatisticService } from 'src/app/serice/statistic.service';
+import { StatisticService } from 'src/app/service/statistic.service';
 import { MedicationService } from 'src/app/service/medication.service';
 import { ResidentService } from 'src/app/service/resident.service';
 import { StockService } from 'src/app/service/stock.service';
@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
   getMedicationPeriod(): number {
     this.medications.forEach(
       medication => medication.stock = this.stocks.find(
-        stock => stock.residentId === medication.residentId && stock.medicineId === medication.medicineId)?.medicines || 0
+        stock => stock.residentId === medication.residentId && stock.medicineId === medication.medicineId)?.pills || 0
     )
     let period = Infinity
      this.medications.forEach(medication => {

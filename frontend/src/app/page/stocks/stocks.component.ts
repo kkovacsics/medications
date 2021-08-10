@@ -49,9 +49,9 @@ export class StocksComponent implements OnInit {
       .pipe(tap(items => {
         items.forEach(item => {
           const residentName = this.residents.find(resident => item.residentId === resident._id)?.name
-          item.resident = residentName ? residentName : ''
+          item.residentName = residentName ? residentName : ''
           const medicineName = this.medicines.find(medicine => item.medicineId === medicine._id)?.name
-          item.medicine = medicineName ? medicineName : ''
+          item.medicineName = medicineName ? medicineName : ''
         })
       })
       )
@@ -70,7 +70,7 @@ export class StocksComponent implements OnInit {
         medication => stock.residentId === medication.residentId && stock.medicineId === medication.medicineId
       ) || new Medication()
       
-      stock.period = (stock.medicines / (medicat.morning + medicat.afternoon + medicat.evening) / 7).toFixed(2)
+      stock.period = (stock.pills / (medicat.morning + medicat.afternoon + medicat.evening) / 7).toFixed(2)
       stock.period = stock.period === 'Infinity'? '': stock.period
     }
     )

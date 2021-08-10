@@ -3,9 +3,9 @@ export class Stock {
   _id: string = '0';
   residentId: string = '0';
   medicineId: string = '0';
-  medicines: number = 0;
+  pills: number = 0;
   recipes?: number = 0;
-  resident?: string = '';
-  medicine?: string = '';
+  residentName?: string = '';
+  medicineName?: string = '';
   period?: string = '';
 }
