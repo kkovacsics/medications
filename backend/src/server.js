@@ -59,6 +59,7 @@ app.use('/users', authenticateJwt, adminOnly, require('./controllers/user/routes
 app.use('/residents', authenticateJwt, require('./controllers/resident/routes'))
 app.use('/medicines', authenticateJwt, require('./controllers/medicine/routes'))
 app.use('/stocks', authenticateJwt, require('./controllers/stock/routes'))
+app.use('/medications', authenticateJwt, require('./controllers/medication/routes'))
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
