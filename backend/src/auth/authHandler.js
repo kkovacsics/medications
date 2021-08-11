@@ -1,32 +1,20 @@
 // ez végzi el az autentikációt
 const jwt = require('jsonwebtoken')
 
-const Users = [
-  {
-    email: 'fonover@gmail.com',
-    name: 'fonover',
-    password: 'test',
-    role: '2'
-  },
-  {
-    email: 'nover@gmail.com',
-    name: 'nover',
-    password: 'test',
-    role: '2'
-  }
-]
+const bcrypt = require('bcryptjs')
+// const salt = bcrypt.genSaltSync(10)
+
+const User = require('../models/user')
 
 const refreshTokens = []
 
-module.exports.login = (req, res) => {
-  // Read email and password from request body
+module.exports.login = async (req, res, next) => {
   const { email, password } = req.body
 
-  // Filter user from the users array by email and password
-  const user = Users.find(u => u.email === email && u.password === password)
+  const user = await User.findOne({ email })
 
-  if (user) {
-  // Generate an access token
+  if (user && bcrypt.compareSync(password, user.password)) { // minden stimmel
+    // Generate an access token
     const accessToken = jwt.sign({
       email: user.email,
       role: user.role
@@ -46,6 +34,7 @@ module.exports.login = (req, res) => {
       user
     })
   } else {
+    res.status(400)
     res.send('email or password incorrect')
   }
 }

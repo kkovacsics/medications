@@ -1,7 +1,5 @@
 const mongoose = require('mongoose')
 
-// timestamps: https://mongoosejs.com/docs/guide.html#timestamps
-
 const UserSchema = mongoose.Schema(
   {
     name: {

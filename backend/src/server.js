@@ -59,7 +59,7 @@ app.use('/person', authenticateJwt, require('./controllers/person/person.routes'
 // be van jelentkezve és admin jogosultsága van
 app.use('/post', authenticateJwt, adminOnly, require('./controllers/post/post.routes'))
 
-app.use('/users', /* authenticateJwt, adminOnly, */ require('./controllers/user/user.routes'))
+app.use('/users', /* authenticateJwt, adminOnly, */ require('./controllers/user/routes'))
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 

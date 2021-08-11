@@ -6,11 +6,12 @@
   "scripts": {
     "start": "node src/index.js",
     "test": "jest",
-    "docker:build": "docker build -t nodejs-api-fejlesztes:latest .",
+    "docker:build": "docker build -t medications:latest .",
     "docker-compose:up": "docker-compose up",
     "dev": "concurrently --kill-others \"docker-compose up\" \"node watcher.js\""
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "chokidar": "^3.5.2",
     "config": "^3.3.6",

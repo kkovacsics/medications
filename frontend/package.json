@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
-    "server": "json-server-auth --id=_id ./server/db.json -w",
+    "server": "json-server-auth --id=_id ./server/db.json -w --port 3000",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

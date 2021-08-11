@@ -1,7 +1,7 @@
 const { mockRequest, mockResponse } = require('jest-mock-req-res')
 
-const personController = require('./person.controller')
-const personService = require('./person.service')
+const personController = require('./controller')
+const personService = require('./service')
 
 jest.mock('./person.service') // ebből tudja a jest, hogy a mocks mappából kell a service-t vennie és nem az eredetivel kell dolgoznia
 
