@@ -1,10 +1,7 @@
 const createError = require('http-errors')
 
-const bcrypt = require('bcryptjs')
-const salt = bcrypt.genSaltSync(10)
-
 const entityService = require('./service')
-const EntityModel = require('../../models/user')
+const EntityModel = require('../../models/resident')
 
 const checkModel = (body, next) => {
   const validationErrors = new EntityModel(body).validateSync()
@@ -42,7 +39,7 @@ exports.create = (req, res, next) => {
     return
   }
 
-  const newEntity = { ...req.body, password: bcrypt.hashSync(req.body.password, salt) }
+  const newEntity = { ...req.body }
 
   entityService.create(newEntity)
     .then(createdEntity => {
@@ -57,7 +54,7 @@ exports.update = (req, res, next) => {
     return
   }
 
-  const updateEntity = { ...req.body, password: bcrypt.hashSync(req.body.password, salt) }
+  const updateEntity = { ...req.body }
 
   return entityService.update(req.params.id, updateEntity)
     .then(entity => {

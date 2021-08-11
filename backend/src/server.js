@@ -52,14 +52,11 @@ app.post('/login', authHandler.login)
 app.post('/refresh', authHandler.refresh)
 app.post('/logout', authHandler.logout)
 
-// app.use('/person', require('./controllers/person/person.routes'))
-app.use('/person', authenticateJwt, require('./controllers/person/person.routes')) // az authenticateJwt middleware-rel védjük
-
-// app.use('/post', require('./controllers/post/post.routes'))
-// be van jelentkezve és admin jogosultsága van
+app.use('/person', authenticateJwt, require('./controllers/person/person.routes'))
 app.use('/post', authenticateJwt, adminOnly, require('./controllers/post/post.routes'))
 
-app.use('/users', /* authenticateJwt, adminOnly, */ require('./controllers/user/routes'))
+app.use('/users', authenticateJwt, adminOnly, require('./controllers/user/routes'))
+app.use('/residents', authenticateJwt, require('./controllers/resident/routes'))
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
