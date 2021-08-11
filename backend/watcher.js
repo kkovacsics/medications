@@ -14,20 +14,20 @@ chokidar.watch('./src').on('all', (event, path) => {
   }
 })
 
-setTimeout(() => {
-  run = true
-}, 10000)
+// setTimeout(() => {
+//   run = true
+// }, 10000)
 
 // akkor kezdi el a figyelést, amikor a medications már fut
-// const ti = setInterval(() => {
-//   exec('docker container ls', (e, s) => {
-//     if (e) {
-//       return console.error(e)
-//     }
-//     run = s.includes('medications')
-//     console.log('Watcher - medications:', run)
-//     if (run) {
-//       clearInterval(ti)
-//     }
-//   })
-// }, 1000)
+const ti = setInterval(() => {
+  exec('docker container ls', (e, s) => {
+    if (e) {
+      return console.error(e)
+    }
+    run = s.includes('medications')
+    console.log('Watcher - medications:', run)
+    if (run) {
+      clearInterval(ti)
+    }
+  })
+}, 1000)
