@@ -17,10 +17,20 @@ const checkModel = (body, next) => {
   return true
 }
 
+const entityRefactor = (item) => {
+  const entity = { ...item }._doc
+  entity.residentName = entity.residentId.name
+  entity.residentId = entity.residentId._id
+  entity.medicineName = entity.medicineId.name
+  entity.medicineId = entity.medicineId._id
+  return entity
+}
+
 exports.findAll = (req, res, next) => {
   return entityService.findAll()
-    .then(entity => {
-      res.json(entity)
+    .then(entities => {
+      entities.forEach((item, index, arr) => { arr[index] = entityRefactor(item) })
+      res.json(entities)
     })
 }
 
@@ -30,7 +40,8 @@ exports.findOne = (req, res, next) => {
       if (!entity) {
         return next(new createError.NotFound(`Entity (${req.params.id}) is not found`))
       }
-      res.json(entity)
+      const newEntity = entityRefactor(entity)
+      res.json(newEntity)
     })
 }
 

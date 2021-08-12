@@ -5,9 +5,9 @@ exports.create = entityData => {
   return entity.save()
 }
 
-exports.findAll = () => Entity.find()
+exports.findAll = () => Entity.find().populate('residentId').populate('medicineId')
 
-exports.findOne = id => Entity.findById(id)
+exports.findOne = id => Entity.findById(id).populate('residentId').populate('medicineId')
 
 exports.update = (id, updateData) => Entity.findByIdAndUpdate(id, updateData, {
   new: true,

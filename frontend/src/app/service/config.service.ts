@@ -61,16 +61,20 @@ export class ConfigService {
   ];
 
   medicationColumns: ITableColumn[] = [
-    {key: 'residentName', title: 'Lakó', type: 'select1', required: true, error: "Kötelező!"},
-    {key: 'medicineName', title: 'Gyógyszer', type: 'select2', required: true, error: "Kötelező!"},
+    {key: 'residentName', title: 'Lakó', onlyList: true, type: 'select1', required: true, error: "Kötelező!"},
+    {key: 'medicineName', title: 'Gyógyszer', onlyList: true, type: 'select2', required: true, error: "Kötelező!"},
+    {key: 'residentId', title: 'Lakó', onlyEdit: true, type: 'select1', required: true, error: "Kötelező!"},
+    {key: 'medicineId', title: 'Gyógyszer', onlyEdit: true, type: 'select2', required: true, error: "Kötelező!"},
     {key: 'morning', title: 'Reggel', type: 'number', required: true, error: "Kötelező, szám!"},
     {key: 'afternoon', title: 'Délben', type: 'number', required: true, error: "Kötelező, szám!"},
     {key: 'evening', title: 'Este', type: 'number', required: true, error: "Kötelező, szám!"},
   ];
 
   stockColumns: ITableColumn[] = [
-    {key: 'residentName', title: 'Lakó', type: 'select1', required: true, error: "Kötelező!"},
-    {key: 'medicineName', title: 'Gyógyszer', type: 'select2', required: true, error: "Kötelező!"},
+    {key: 'residentName', title: 'Lakó', onlyList: true, type: 'select1', required: true, error: "Kötelező!"},
+    {key: 'medicineName', title: 'Gyógyszer', onlyList: true, type: 'select2', required: true, error: "Kötelező!"},
+    {key: 'residentId', title: 'Lakó', onlyEdit: true, type: 'select1', required: true, error: "Kötelező!"},
+    {key: 'medicineId', title: 'Gyógyszer', onlyEdit: true, type: 'select2', required: true, error: "Kötelező!"},
     {key: 'pills', title: 'Gyógyszer[db]', type: 'number', required: true, error: "Kötelező, szám!"},
     {key: 'period', title: 'Ellátás[hét]', type: 'text', onlyList: true},
   ];

@@ -32,36 +32,23 @@ export class MedicationEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.residentService.get()
-      .pipe( tap(residents => this.selectOptions1 = residents.map(resident => ({k: resident._id, v: resident.name}))
-                                                  .sort( (a,b) => a.v.toLowerCase().localeCompare(b.v.toLowerCase()) ) ) )
+      .pipe( tap(residents => this.selectOptions1 = this.fillOptionList(residents) ) )
       .pipe( switchMap( () => this.medicineService.get() ) )
-      .pipe( tap( medicines => this.selectOptions2 = medicines.map(medicine => ({k: medicine._id, v: medicine.name}))
-                                                  .sort( (a,b) => a.v.toLowerCase().localeCompare(b.v.toLowerCase()) ) ) )
+      .pipe( tap( medicines => this.selectOptions2 = this.fillOptionList(medicines) ) )
       .pipe( tap( medicines => {
         this.activatedRoute.params.subscribe(params => {
           if (params.id === '0') {
             this.item = new Medication()
           } else {
-            this.medicationService.get(params.id).subscribe( item => {
-              this.item = item as unknown as Medication
-              this.item.residentName = this.item.residentId
-              this.item.medicineName = this.item.medicineId
-            })
+            this.medicationService.get(params.id).subscribe( item => this.item = item as unknown as Medication )
           }
         })
-      } )).subscribe()
+      }))
+      .subscribe()
   }
 
   onSubmit(ngForm: NgForm): void {
     let observ$
-    this.item.residentId = this.item.residentName || ''
-    this.item.medicineId = this.item.medicineName || ''
-    delete(this.item.residentName)
-    delete(this.item.medicineName)
-    
-    this.item.morning = Number(this.item.morning)
-    this.item.afternoon = Number(this.item.afternoon)
-    this.item.evening = Number(this.item.evening)
 
     if (this.item._id === '0') {
       this.item._id = this.medicationService.mongoObjectId()
@@ -81,9 +68,9 @@ export class MedicationEditComponent implements OnInit {
     )
   }
 
-  getSelectOptions = (): ISelectOption[] => {
-    let select = this.columns.find(item => item.type === 'select1')
-    return select?.selectOpts1? select?.selectOpts1: []
+  fillOptionList(options: { _id: string, name: string }[]): { k: string, v: string }[] {
+    return options.map(option => ({ k: option._id, v: option.name }))
+            .sort( (a,b) => a.v.toLowerCase().localeCompare(b.v.toLowerCase()) )
   }
-
+  
 }

@@ -7,8 +7,6 @@ import { Resident } from 'src/app/model/resident';
 import { Stock } from 'src/app/model/stock';
 import { ConfigService } from 'src/app/service/config.service';
 import { MedicationService } from 'src/app/service/medication.service';
-import { MedicineService } from 'src/app/service/medicine.service';
-import { ResidentService } from 'src/app/service/resident.service';
 import { StockService } from 'src/app/service/stock.service';
 
 @Component({
@@ -30,8 +28,6 @@ export class StocksComponent implements OnInit {
   constructor(
     private config: ConfigService,
     private stockService: StockService,
-    private residentService: ResidentService,
-    private medicineService: MedicineService,
     private medicationService: MedicationService,
   ) { }
 
@@ -39,22 +35,9 @@ export class StocksComponent implements OnInit {
   }
 
   getStocks(): Observable<Stock[]> {
-    return this.residentService.get()
-      .pipe(tap(items => this.residents = items))
-      .pipe(switchMap(() => this.medicineService.get()))
-      .pipe(tap(items => this.medicines = items))
-      .pipe(switchMap(() => this.medicationService.get()))
+    return this.medicationService.get()
       .pipe(tap(items => this.medications = items))
       .pipe(switchMap(() => this.stockService.get()))
-      .pipe(tap(items => {
-        items.forEach(item => {
-          const residentName = this.residents.find(resident => item.residentId === resident._id)?.name
-          item.residentName = residentName ? residentName : ''
-          const medicineName = this.medicines.find(medicine => item.medicineId === medicine._id)?.name
-          item.medicineName = medicineName ? medicineName : ''
-        })
-      })
-      )
       .pipe(tap(items => this.getMedicationPeriod(items)))
   }
 
@@ -77,5 +60,3 @@ export class StocksComponent implements OnInit {
   }
 
 }
-
-
