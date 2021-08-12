@@ -22,8 +22,9 @@ const checkModel = (body, next) => {
 
 exports.findAll = (req, res, next) => {
   return entityService.findAll()
-    .then(entity => {
-      res.json(entity)
+    .then(entities => {
+      entities.forEach(entity => { entity.password = '' }) // password-öt nem küldünk
+      res.json(entities)
     })
 }
 
@@ -33,6 +34,7 @@ exports.findOne = (req, res, next) => {
       if (!entity) {
         return next(new createError.NotFound(`Entity (${req.params.id}) is not found`))
       }
+      entity.password = '' // password-öt nem küldünk
       res.json(entity)
     })
 }
@@ -46,6 +48,7 @@ exports.create = (req, res, next) => {
 
   entityService.create(newEntity)
     .then(createdEntity => {
+      createdEntity.password = '' // password-öt nem küldünk vissza
       res.status(201)
       res.json(createdEntity)
     })
@@ -57,10 +60,16 @@ exports.update = (req, res, next) => {
     return
   }
 
-  const updateEntity = { ...req.body, password: bcrypt.hashSync(req.body.password, salt) }
+  let updateEntity
+  if (req.body.password) { // ha van jelszó, akkor titkosítunk
+    updateEntity = { ...req.body, password: bcrypt.hashSync(req.body.password, salt) }
+  } else { // ha nincs, akkor békén hagyjuk
+    updateEntity = { ...req.body }
+  }
 
   return entityService.update(req.params.id, updateEntity)
     .then(entity => {
+      entity.password = '' // password-öt nem küldünk vissza
       res.json(entity)
     })
     .catch(err => {

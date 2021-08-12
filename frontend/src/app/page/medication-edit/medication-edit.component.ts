@@ -44,8 +44,8 @@ export class MedicationEditComponent implements OnInit {
           } else {
             this.medicationService.get(params.id).subscribe( item => {
               this.item = item as unknown as Medication
-              this.item.resident = this.item.residentId
-              this.item.medicine = this.item.medicineId
+              this.item.residentName = this.item.residentId
+              this.item.medicineName = this.item.medicineId
             })
           }
         })
@@ -54,10 +54,10 @@ export class MedicationEditComponent implements OnInit {
 
   onSubmit(ngForm: NgForm): void {
     let observ$
-    this.item.residentId = this.item.resident || ''
-    this.item.medicineId = this.item.medicine || ''
-    delete(this.item.resident)
-    delete(this.item.medicine)
+    this.item.residentId = this.item.residentName || ''
+    this.item.medicineId = this.item.medicineName || ''
+    delete(this.item.residentName)
+    delete(this.item.medicineName)
     
     this.item.morning = Number(this.item.morning)
     this.item.afternoon = Number(this.item.afternoon)

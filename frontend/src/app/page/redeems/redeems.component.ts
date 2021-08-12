@@ -61,7 +61,7 @@ export class RedeemsComponent implements OnInit {
             item.residentName = residentName? residentName: ''
             const medicineName = this.medicines.find( medicine => item.medicineId===medicine._id )?.name
             item.medicineName = medicineName? medicineName: ''
-            const stock = this.stocks.find(stock => item.residenId === stock.residenId &&
+            const stock = this.stocks.find(stock => item.residentId === stock.residentId &&
                                                     item.medicineId === stock.medicineId) || new Stock()
             item.stockId = stock._id || ''
             item.stock = stock.pills || 0
@@ -99,11 +99,18 @@ export class RedeemsComponent implements OnInit {
     stock.medicineId = medication.medicineId
     stock.pills = (medication.stock || 0) + (medication.pills || 0)
     stock.recipes = 0
-    delete (stock.resident)
-    delete (stock.medicine)
-    delete (stock.period)
+    delete stock.residentName
+    delete stock.medicineName
+    delete stock.period
 
-    const item = await this.stockService.update(stock).toPromise()
+    let item
+    if (stock._id === '') {
+      stock._id = this.stockService.mongoObjectId()
+      item = await this.stockService.create(stock).toPromise()
+    } else {
+      item= await this.stockService.update(stock).toPromise()
+    }
+ 
     medication.stock = item.pills
     // this.onWeekChanged()
 

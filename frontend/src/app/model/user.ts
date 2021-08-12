@@ -1,6 +1,6 @@
 export class User {
   [key: string]: any;
-  _id?: string = '0';
+  _id?: string = '';
   name?: string = '';
   email?: string = '';
   password?: string = '';

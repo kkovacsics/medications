@@ -13,33 +13,41 @@
       <div class="card-body">
           <table class="table table-striped">
               <thead>
-                  <tr>
-                      <th *ngFor="let col of columns" (click)="onColumnClick(col.key)">
+                <tr>
+                  <ng-container *ngFor="let col of columns">
+                    <ng-container *ngIf="!col.onlyEdit">
+                      <th (click)="onColumnClick(col.key)">
                         {{ col.title }}
                         <span *ngIf="col.key===sortKey && sortAscending"><i class="fas fa-sort-up"></i></span>
                         <span *ngIf="col.key===sortKey && !sortAscending"><i class="fas fa-sort-down"></i></span>
                       </th>
-                      <th></th>
-                  </tr>
+                    </ng-container>  
+                  </ng-container>  
+                  <th></th>
+                </tr>
               </thead>
               <tbody>
                   <tr *ngFor="let row of list$ | async | filter:columns:phrase | sorter:sortKey:sortAscending">
-                      <td *ngFor="let col of columns">{{ row[col.key] }}</td>
-                      <td>
-                        <div class="btn-group special">
-                          <button
-                              [routerLink]="['/', entity, row._id]"
-                              class="btn btn-info btn-sm"
-                              title="Szerkesztés">
-                              <i class="fas fa-pencil-alt"></i>
-                          </button>
-                          <button class="btn btn-danger btn-sm"
-                              (click)="onDelete(row)"
-                              title="Törlés">
-                              <i class="fas fa-trash-alt"></i>
-                          </button>
-                        </div>
-                      </td>
+                    <ng-container *ngFor="let col of columns">
+                      <ng-container *ngIf="!col.onlyEdit">
+                        <td>{{ row[col.key] }}</td>
+                      </ng-container>  
+                    </ng-container>  
+                    <td>
+                      <div class="btn-group special">
+                        <button
+                            [routerLink]="['/', entity, row._id]"
+                            class="btn btn-info btn-sm"
+                            title="Szerkesztés">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button class="btn btn-danger btn-sm"
+                            (click)="onDelete(row)"
+                            title="Törlés">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </div>
+                    </td>
                   </tr>
               </tbody>
           </table>

@@ -45,9 +45,16 @@ export class UserEditComponent implements OnInit {
     this.selectOptions1 = this.getSelectOptions()
 
     this.activatedRoute.params.subscribe( params=> {
+      const colPassword = this.columns.find(col => col.key === 'password')
       if (params.id === '0') {
         this.item = new User()
+        if (colPassword) {
+          colPassword.required = true // új felhasználónál kötelező
+        }
       } else {
+        if (colPassword) {
+          colPassword.required = false // szerkesztésnél NEM kötelező
+        }
         this.userService.get(params.id).subscribe( item => {
           this.item = item as User
           this.item.password = ''
@@ -62,7 +69,7 @@ export class UserEditComponent implements OnInit {
     if (!this.item.password) { // ha nem adott meg semmit, meghagyjuk a régit
       delete this.item.password
     }
-    if (this.item._id === '0') {
+    if (this.item._id === '') {
       this.item._id = this.userService.mongoObjectId()
       observ$ = this.userService.create(this.item)
     } else {

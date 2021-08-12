@@ -28,6 +28,7 @@ module.exports.login = async (req, res, next) => {
     }, process.env.REFRESH_TOKEN_SECRET) // nincs lejárati idő
     refreshTokens.push(refreshToken) // elmentjük a tömbbe
 
+    user.password = '' // password-öt nem küldünk vissza
     res.json({
       accessToken,
       refreshToken,

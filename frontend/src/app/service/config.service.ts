@@ -10,6 +10,7 @@ export interface ITableColumn {
   pattern?: string;
   error?: string;
   onlyList?: boolean;
+  onlyEdit?: boolean;
 }
 
 export interface ISelectOption {
@@ -39,7 +40,7 @@ export class ConfigService {
   userColumns: ITableColumn[] = [
     {key: 'name', title: 'Név', type: 'text', required: true, pattern: "[A-ZÁÉÍÓÖŐÚÜŰ].{2,}", error: "Kötelező, nagy kezdőbetű, minimum 3 karakter!"},
     {key: 'email', title: 'Email', type: 'email', required: true, pattern:"[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}", error:"Kötelező, érvényes email cím!"},
-    {key: 'password', title: 'Jelszó', type: 'password', pattern:".{4,}", error: "Minimum 4 karakter!"},
+    {key: 'password', title: 'Jelszó', type: 'password', onlyEdit: true, pattern:".{4,}", error: "Minimum 4 karakter!"},
     {key: 'role', title: 'Szint', type: 'select1', selectOpts1: [{k:'1', v:'1'},{k:'2', v:'2'}] },
   ];
 

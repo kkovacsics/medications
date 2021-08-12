@@ -62,7 +62,7 @@ export class StockEditComponent implements OnInit {
     this.item.pills = Number(this.item.pills)
     this.item.recipes = Number(this.item.recipes)
     
-    if (this.item._id === '0') {
+    if (this.item._id === '') {
       this.item._id = this.stockService.mongoObjectId()
       observ$ = this.stockService.create(this.item)
     } else {
