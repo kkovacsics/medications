@@ -5,6 +5,7 @@ import { Medicine } from 'src/app/model/medicine';
 import { Resident } from 'src/app/model/resident';
 import { ConfigService } from 'src/app/service/config.service';
 import { MedicationService } from 'src/app/service/medication.service';
+import { StatisticService } from 'src/app/service/statistic.service';
 
 @Component({
   selector: 'app-medications',
@@ -24,9 +25,11 @@ export class MedicationsComponent implements OnInit {
   constructor(
     private config: ConfigService,
     private medicationService: MedicationService,
+    private statisticService: StatisticService,
  ) { }
 
   ngOnInit(): void {
+    this.statisticService.get()
   }
 
   getMedications(): Observable<Medication[]> {

@@ -1,0 +1,11 @@
+const Resident = require('../../models/resident')
+const Medicine = require('../../models/medicine')
+const Medication = require('../../models/medication')
+const Stock = require('../../models/stock')
+
+exports.residentNumber = () => Resident.count()
+exports.medicineNumber = () => Medicine.count()
+exports.distinctMedicationResidents = () => Medication.distinct('residentId')
+exports.distinctMedicationMedicines = () => Medication.distinct('medicineId')
+exports.medications = () => Medication.find()
+exports.stocks = () => Stock.find()

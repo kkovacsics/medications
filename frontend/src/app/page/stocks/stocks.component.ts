@@ -7,6 +7,7 @@ import { Resident } from 'src/app/model/resident';
 import { Stock } from 'src/app/model/stock';
 import { ConfigService } from 'src/app/service/config.service';
 import { MedicationService } from 'src/app/service/medication.service';
+import { StatisticService } from 'src/app/service/statistic.service';
 import { StockService } from 'src/app/service/stock.service';
 
 @Component({
@@ -29,9 +30,11 @@ export class StocksComponent implements OnInit {
     private config: ConfigService,
     private stockService: StockService,
     private medicationService: MedicationService,
+    private statisticService: StatisticService,
   ) { }
 
   ngOnInit(): void {
+    this.statisticService.get()
   }
 
   getStocks(): Observable<Stock[]> {
