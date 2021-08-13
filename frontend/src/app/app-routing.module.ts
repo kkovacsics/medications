@@ -7,7 +7,6 @@ import { MedicationEditComponent } from './page/medication-edit/medication-edit.
 import { MedicationsComponent } from './page/medications/medications.component';
 import { MedicineEditComponent } from './page/medicine-edit/medicine-edit.component';
 import { MedicinesComponent } from './page/medicines/medicines.component';
-import { PillsComponent } from './page/pills/pills.component';
 import { RedeemsComponent } from './page/redeems/redeems.component';
 import { ResidentEditComponent } from './page/resident-edit/resident-edit.component';
 import { ResidentsComponent } from './page/residents/residents.component';
@@ -17,6 +16,7 @@ import { UserEditComponent } from './page/user-edit/user-edit.component';
 import { UsersComponent } from './page/users/users.component';
 import { AuthGuardService } from './service/auth-guard.service';
 import { RoleGuardService } from './service/role-guard.service';
+import { DistributionsComponent } from './page/distributions/distributions.component';
 
 const routes: Routes = [
   {
@@ -78,8 +78,8 @@ const routes: Routes = [
     canActivate: [AuthGuardService],
   },
   {
-    path: 'pills',
-    component: PillsComponent,
+    path: 'distributions',
+    component: DistributionsComponent,
     canActivate: [AuthGuardService],
   },
   {

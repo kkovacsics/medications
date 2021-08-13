@@ -61,6 +61,7 @@ app.use('/medicines', authenticateJwt, require('./controllers/medicine/routes'))
 app.use('/stocks', authenticateJwt, require('./controllers/stock/routes'))
 app.use('/medications', authenticateJwt, require('./controllers/medication/routes'))
 app.use('/statistics', authenticateJwt, require('./controllers/statistic/routes'))
+app.use('/distributions', /* authenticateJwt, */ require('./controllers/distribution/routes'))
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 

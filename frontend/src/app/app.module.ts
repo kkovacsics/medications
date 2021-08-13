@@ -26,7 +26,7 @@ import { StockEditComponent } from './page/stock-edit/stock-edit.component';
 import { FilterPipe } from './pipe/filter.pipe';
 import { SorterPipe } from './pipe/sorter.pipe';
 import { RedeemsComponent } from './page/redeems/redeems.component';
-import { PillsComponent } from './page/pills/pills.component';
+import { DistributionsComponent } from './page/distributions/distributions.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { PillsComponent } from './page/pills/pills.component';
     FilterPipe,
     SorterPipe,
     RedeemsComponent,
-    PillsComponent
+    DistributionsComponent
   ],
   imports: [
     BrowserModule,

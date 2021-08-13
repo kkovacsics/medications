@@ -1,0 +1,41 @@
+<div class="container px-4">
+  <h1 class="h3 mt-4">{{ title }}</h1>
+  <div class="card shadow-sm mb-4">
+      <div class="card-header d-flex">
+        <div class="form-group">
+          <input class="form-control" type="text" placeholder="Keresés..." [(ngModel)]="phrase">
+        </div>
+
+        <button type="button" class="btn btn-success ms-auto px-5" title="Elkészült" (click)="onSave()">
+          <i class="fas fa-check"></i>
+        </button>
+      </div>
+      <div class="card-body">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                    <ng-container *ngFor="let col of columns">
+                      <ng-container *ngIf="!col.onlyEdit">
+                        <th (click)="onColumnClick(col.key)">
+                          {{ col.title }}
+                          <span *ngIf="col.key===sortKey && sortAscending"><i class="fas fa-sort-up"></i></span>
+                          <span *ngIf="col.key===sortKey && !sortAscending"><i class="fas fa-sort-down"></i></span>
+                        </th>
+                      </ng-container>  
+                    </ng-container>  
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let row of list$ | async | filter:columns:phrase | sorter:sortKey:sortAscending">
+                      <ng-container *ngFor="let col of columns">
+                        <ng-container *ngIf="!col.onlyEdit">
+                          <td>{{ row[col.key] }}</td>
+                        </ng-container>  
+                      </ng-container>  
+                    </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
+

@@ -34,7 +34,7 @@ export class ConfigService {
   ];
   navAction: {label: string, href: string, icon: string, controllable?: boolean, role: number}[] = [
     {label: 'Gyógyszer kiváltás', href: '/redeems', icon: 'fas fa-file-prescription fa-fw', role: 1},
-    {label: 'Gyógyszer kiosztás', href: '/pills', icon: 'fas fa-pills fa-fw', controllable: true, role: 1},
+    {label: 'Gyógyszer kiosztás', href: '/distributions', icon: 'fas fa-pills fa-fw', controllable: true, role: 1},
   ];
 
   userColumns: ITableColumn[] = [
