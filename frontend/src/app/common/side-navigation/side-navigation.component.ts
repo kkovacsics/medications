@@ -18,10 +18,7 @@ export class SideNavigationComponent implements OnInit {
 
   hasWeeklyDose: boolean = false
   statistic$: Subscription = this.statisticService.statistic$.subscribe(
-    statistic => {
-      this.hasWeeklyDose = statistic.medicationWeek >= 1
-      console.log(statistic)
-    }
+    statistic => this.hasWeeklyDose = statistic.medicationWeek >= 1
   )
 
   constructor(

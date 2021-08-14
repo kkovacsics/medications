@@ -27,6 +27,7 @@ import { FilterPipe } from './pipe/filter.pipe';
 import { SorterPipe } from './pipe/sorter.pipe';
 import { RedeemsComponent } from './page/redeems/redeems.component';
 import { DistributionsComponent } from './page/distributions/distributions.component';
+import { WeekFilterPipe } from './pipe/week-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { DistributionsComponent } from './page/distributions/distributions.compo
     FilterPipe,
     SorterPipe,
     RedeemsComponent,
-    DistributionsComponent
+    DistributionsComponent,
+    WeekFilterPipe
   ],
   imports: [
     BrowserModule,

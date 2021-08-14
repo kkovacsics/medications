@@ -25,6 +25,7 @@ const entityRefactor = (item) => {
   entity.medicineId = entity.medicineId._id
   return entity
 }
+exports.entityRefactor = entityRefactor
 
 exports.findAll = (req, res, next) => {
   return entityService.findAll()

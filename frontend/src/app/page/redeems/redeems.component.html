@@ -11,7 +11,7 @@
             <label class="d-flex justify-content-end" for="week">Ahol a készlet kevesebb, mint </label>
           </div>
           <div class="col-md-auto col-4">
-            <select class="form-select" id="week" name="week" [(ngModel)]="week" (change)="onWeekChanged()" required>
+            <select class="form-select" id="week" name="week" [(ngModel)]="week" required>
               <option value="1">1 hét</option>
               <option value="2">2 hét</option>
               <option value="3">3 hét</option>
@@ -38,7 +38,7 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let row of list$ | async | filter:columns:phrase | sorter:sortKey:sortAscending">
+                  <tr *ngFor="let row of list$ | async | weekFilter:week | filter:columns:phrase | sorter:sortKey:sortAscending">
                       <td *ngFor="let col of columns">{{ row[col.key] }}</td>
                   </tr>
               </tbody>
