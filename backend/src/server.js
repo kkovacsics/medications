@@ -22,12 +22,12 @@ const authenticateJwt = require('./auth/authenticate')
 const adminOnly = require('./auth/adminOnly')
 const authHandler = require('./auth/authHandler')
 
-const { host } = config.get('database')
-// const { username, password, host } = config.get('database')
+// const { host } = config.get('database')
+const { username, password, host } = config.get('database')
 
 mongoose
-  .connect(`mongodb://${host}`, {
-  // .connect(`mongodb+srv://${username}:${password}@${host}`, {
+  // .connect(`mongodb://${host}`, {
+  .connect(`mongodb+srv://${username}:${password}@${host}`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
