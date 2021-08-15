@@ -72,6 +72,9 @@ exports.update = (req, res, next) => {
 
   return entityService.update(req.params.id, updateEntity)
     .then(entity => {
+      if (!entity) {
+        return next(new createError.NotFound(`Entity (${req.params.id}) is not found`))
+      }
       res.json(entity)
     })
     .catch(err => {
@@ -81,7 +84,12 @@ exports.update = (req, res, next) => {
 
 exports.delete = (req, res, next) => {
   return entityService.delete(req.params.id)
-    .then(() => res.json({}))
+    .then(entity => {
+      if (!entity) {
+        return next(new createError.NotFound(`Entity (${req.params.id}) is not found`))
+      }
+      res.json({})
+    })
     .catch(err => {
       next(new createError.InternalServerError(err.message))
     })

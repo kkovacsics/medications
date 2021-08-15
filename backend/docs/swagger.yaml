@@ -1,25 +1,38 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: Sample Blog API
-  description: A sample blog API to illustrate REST API concepts
+  title: Medication API
+  description: A Medication API to illustrate REST API concepts
 servers:
   - url: http://localhost:3000
+tags:
+  - name: "resident"
+    description: "Access to Residents"
+  - name: "medicine"
+    description: "Access to Medicines"
+  - name: "user"
+    description: "Access to Users"
+  - name: "medication"
+    description: "Access to Medications"
+  - name: "stock"
+    description: "Access to Stocks"
 paths:
-  /person:
+  /residents:
     get:
-      description: Returns a list of persons
+      tags:
+        - "resident"
+      summary: "Returns a list of residents"
       security:
         - bearerAuth: []
       responses:
         '200':
-          description: List of persons returned successfully
+          description: "List of residents returned successfully"
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Person'
+                  $ref: '#/components/schemas/Resident'
         '500':
           description: Internal server error
           content:
@@ -27,7 +40,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     post:
-      description: Creates a new person
+      tags:
+        - "resident"
+      summary: Creates a new resident
       security:
         - bearerAuth: []
       requestBody:
@@ -35,16 +50,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Person'
+              $ref: '#/components/schemas/Resident'
       responses:
         '201':
-          description: Person has been created successfully
+          description: Resident has been created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Person'
+                $ref: '#/components/schemas/Resident'
         '400':
-          description: Invalid request
+          description: Invalid request when the post data is invalid
           content:
             application/json:
               schema:
@@ -55,24 +70,762 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /person/{person_id}:
+  /residents/{_id}:
     get:
-      description: Returns the person with the given ID
+      tags:
+        - "resident"
+      summary: "Returns the resident with the given ID"
+      description: ""
+      security:
+        - bearerAuth: []
       parameters:
-        - name: person_id
+        - name: _id
           in: path
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: Person data returned successfully
+          description: Resident data returned successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Person'
+                $ref: '#/components/schemas/Resident'
         '404':
-          description: Person with the give ID was not found
+          description: Resident with the given ID was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - "resident"
+      summary: "Updates a resident"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Resident'
+      responses:
+        '200':
+          description: Resident has been updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resident'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Resident with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - "resident"
+      summary: Deletes a resident
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: Resident has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        '404':
+          description: Resident with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /medicines:
+    get:
+      tags:
+        - "medicine"
+      summary: "Returns a list of medicines"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "List of medicines returned successfully"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Medicine'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - "medicine"
+      summary: Creates a new medicine
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Medicine'
+      responses:
+        '201':
+          description: Medicine has been created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medicine'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /medicines/{_id}:
+    get:
+      tags:
+        - "medicine"
+      summary: "Returns the medicine with the given ID"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: _id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Medicine data returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medicine'
+        '404':
+          description: Medicine with the given ID was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - "medicine"
+      summary: "Updates a medicine"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Medicine'
+      responses:
+        '200':
+          description: Medicine has been updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medicine'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Medicine with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - "medicine"
+      summary: Deletes a medicine
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: Medicine has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        '404':
+          description: Medicine with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users:
+    get:
+      tags:
+        - "user"
+      summary: "Returns a list of users"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "List of users returned successfully"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - "user"
+      summary: Creates a new user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User has been created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/{_id}:
+    get:
+      tags:
+        - "user"
+      summary: "Returns the user with the given ID"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: _id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User data returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User with the given ID was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - "user"
+      summary: "Updates a user"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User has been updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - "user"
+      summary: Deletes a user
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: User has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        '404':
+          description: User with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /medications:
+    get:
+      tags:
+        - "medication"
+      summary: "Returns a list of medications"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "List of medications returned successfully"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Medication'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - "medication"
+      summary: Creates a new medication
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: residentId and medicineId should be a real MongoDB objectID!
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Medication'
+      responses:
+        '201':
+          description: Medication has been created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medication'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /medications/{_id}:
+    get:
+      tags:
+        - "medication"
+      summary: "Returns the medication with the given ID"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: _id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Medication data returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medication'
+        '404':
+          description: Medication with the given ID was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - "medication"
+      summary: "Updates a medication"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      requestBody:
+        description: residentId and medicineId should be a real MongoDB objectID!
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Medication'
+      responses:
+        '200':
+          description: Medication has been updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Medication'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Medication with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - "medication"
+      summary: Deletes a medication
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: Medication has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        '404':
+          description: Medication with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /stocks:
+    get:
+      tags:
+        - "stock"
+      summary: "Returns a list of stocks"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "List of stocks returned successfully"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stock'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - "stock"
+      summary: Creates a new stock
+      security:
+        - bearerAuth: []
+      requestBody:
+        description: residentId and medicineId should be a real MongoDB objectID!
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stock'
+      responses:
+        '201':
+          description: Stock has been created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stock'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /stocks/{_id}:
+    get:
+      tags:
+        - "stock"
+      summary: "Returns the stock with the given ID"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: _id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Stock data returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stock'
+        '404':
+          description: Stock with the given ID was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - "stock"
+      summary: "Updates a stock"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      requestBody:
+        description: residentId and medicineId should be a real MongoDB objectID!
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stock'
+      responses:
+        '200':
+          description: Stock has been updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stock'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Stock with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - "stock"
+      summary: Deletes a o
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: Stock has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        '404':
+          description: Stock with the given ID is not found
           content:
             application/json:
               schema:
@@ -85,24 +838,103 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   securitySchemes:
-    bearerAuth:            # arbitrary name for the security scheme
+    bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    Person:
+    Resident:
       type: object
       required:
-        - first_name
-        - last_name
-        - email
+        - name
+        - mother
+        - dob
+        - dop 
+        - sin
+        - movin
       properties:
-        first_name:
+        name:
           type: string
-        last_name:
+        mother:
+          type: string
+        dob:
+          type: string
+        dop:
+          type: string
+        sin:
+          type: string
+        movin:
+          type: string
+        movout:
+          type: string
+    Medicine:
+      type: object
+      required:
+        - name
+        - agent
+        - packing
+      properties:
+        name:
+          type: string
+        agent:
+          type: string
+        packing:
+          type: number
+    User:
+      type: object
+      required:
+        - name
+        - email
+        - password
+        - role
+      properties:
+        name:
           type: string
         email:
           type: string
+        password:
+          type: string
+        role:
+          type: number
+    Medication:
+      type: object
+      required:
+        - residentId
+        - medicineId
+        - morning
+        - afternoon
+        - evening
+      properties:
+        residentId:
+          type: string
+          description: "It should be a real MongoDB ObjectID!"
+        medicineId:
+          type: string
+          description: "It should be a real MongoDB ObjectID!"
+        morning:
+          type: number
+        afternoon:
+          type: number
+        evening:
+          type: number
+    Stock:
+      type: object
+      required:
+        - residentId
+        - medicineId
+        - pills
+        - recipes
+      properties:
+        residentId:
+          type: string
+          description: "It should be a real MongoDB ObjectID!"
+        medicineId:
+          type: string
+          description: "It should be a real MongoDB ObjectID!"
+        pills:
+          type: number
+        recipes:
+          type: number
     Error:
       type: object
       required:
