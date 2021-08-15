@@ -42,7 +42,6 @@ app.use(cors())
 
 app.use(morgan('combined', { stream: logger.stream })) // logolás a legelső helyre kerül a middleware-k között
 
-// app.use('/images', express.static(path.join(__dirname, '../public/images')))
 app.use(express.static(path.join(__dirname, '../public')))
 
 app.use(express.json())
@@ -51,9 +50,6 @@ app.use(express.json())
 app.post('/login', authHandler.login)
 app.post('/refresh', authHandler.refresh)
 app.post('/logout', authHandler.logout)
-
-app.use('/person', authenticateJwt, require('./controllers/person/person.routes'))
-app.use('/post', authenticateJwt, adminOnly, require('./controllers/post/post.routes'))
 
 app.use('/users', authenticateJwt, adminOnly, require('./controllers/user/routes'))
 app.use('/residents', authenticateJwt, require('./controllers/resident/routes'))

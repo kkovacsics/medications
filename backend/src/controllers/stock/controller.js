@@ -18,12 +18,15 @@ const checkModel = (body, next) => {
 }
 
 const entityRefactor = (item) => {
-  const entity = { ...item }._doc
-  entity.residentName = entity.residentId.name
-  entity.residentId = entity.residentId._id
-  entity.medicineName = entity.medicineId.name
-  entity.medicineId = entity.medicineId._id
-  return entity
+  if (item._doc && item.residentId && item.medicineId) {
+    const entity = { ...item }._doc
+    entity.residentName = entity.residentId.name
+    entity.residentId = entity.residentId._id
+    entity.medicineName = entity.medicineId.name
+    entity.medicineId = entity.medicineId._id
+    return entity
+  }
+  return item
 }
 
 exports.findAll = (req, res, next) => {

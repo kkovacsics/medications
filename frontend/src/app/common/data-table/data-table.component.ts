@@ -29,6 +29,9 @@ export class DataTableComponent<T extends {[propname: string]: any}> implements 
 
   onDelete(item: any): void {
     if (confirm('Valóban törölni akarod?')) {
+      this.phrase = ''
+      this.sortKey = ''
+      this.sortAscending = true
       this.deleteEvent.emit(item)
     }
   }

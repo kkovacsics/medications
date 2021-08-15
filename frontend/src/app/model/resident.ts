@@ -7,5 +7,5 @@ export class Resident {
   dop: string = '';
   sin: string = '';
   movin: string = '';
-  movout: string = '';
+  movout?: string = '';
 }

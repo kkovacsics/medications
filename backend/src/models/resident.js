@@ -15,8 +15,7 @@ const ResidentSchema = mongoose.Schema(
       required: true
     },
     dop: {
-      type: String,
-      required: true
+      type: String
     },
     sin: {
       type: String,
@@ -27,8 +26,7 @@ const ResidentSchema = mongoose.Schema(
       required: true
     },
     movout: {
-      type: String,
-      required: true
+      type: String
     }
   }, {
     timestamps: true

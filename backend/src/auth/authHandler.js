@@ -14,8 +14,7 @@ module.exports.login = async (req, res, next) => {
   const user = await User.findOne({ email })
 
   if (user && bcrypt.compareSync(password, user.password)) { // minden stimmel
-    // Generate an access token
-    const accessToken = jwt.sign({
+    const accessToken = jwt.sign({ // Generate an access token
       email: user.email,
       role: user.role
     }, process.env.ACCESS_TOKEN_SECRET, {

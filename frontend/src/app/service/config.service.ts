@@ -55,9 +55,9 @@ export class ConfigService {
   ];
 
   medicineColumns: ITableColumn[] = [
-    {key: 'name', title: 'Gyógyszer', type: 'text', required: true, pattern: "[A-ZÁÉÍÓÖŐÚÜŰ].{2,}", error: "Kötelező, nagy kezdőbetű, minimum 3 karakter!"},
-    {key: 'agent', title: 'Hatóanyag', type: 'text', pattern:"[a-záéíóöőúüű]{3,}", error:"Kisbetű, minimum 3 karakter!"},
-    {key: 'packing', title: 'Kiszerelés', type: 'text', required: true, pattern:"\\d+", error: "Kötelező, szám!"},
+    {key: 'name', title: 'Gyógyszer', type: 'text', required: true, pattern: "[A-ZÁÉÍÓÖŐÚÜŰ][a-záéíóöőúüű]{2,}", error: "Kötelező, nagy kezdőbetű, minimum 3 karakter!"},
+    {key: 'agent', title: 'Hatóanyag', type: 'text', required: true, pattern:"[a-záéíóöőúüűA-ZÁÉÍÓÖŐÚÜŰ][\\s\\da-záéíóöőúüűA-ZÁÉÍÓÖŐÚÜŰ]{2,}", error:"Betű, minimum 3 karakter!"},
+    {key: 'packing', title: 'Kiszerelés', type: 'text', required: true, pattern:"[1-9]\\d*", error: "Kötelező, 0-nál nagyobb szám!"},
   ];
 
   medicationColumns: ITableColumn[] = [
