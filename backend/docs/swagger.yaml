@@ -10,12 +10,12 @@ tags:
     description: "Access to Residents"
   - name: "medicine"
     description: "Access to Medicines"
-  - name: "user"
-    description: "Access to Users"
   - name: "medication"
     description: "Access to Medications"
   - name: "stock"
     description: "Access to Stocks"
+  - name: "user"
+    description: "Access to Users"
 paths:
   /residents:
     get:
@@ -333,169 +333,6 @@ paths:
                 example: {}
         '404':
           description: Medicine with the given ID is not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /users:
-    get:
-      tags:
-        - "user"
-      summary: "Returns a list of users"
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: "List of users returned successfully"
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/User'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-    post:
-      tags:
-        - "user"
-      summary: Creates a new user
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '201':
-          description: User has been created successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        '400':
-          description: Invalid request when the post data is invalid
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /users/{_id}:
-    get:
-      tags:
-        - "user"
-      summary: "Returns the user with the given ID"
-      description: ""
-      security:
-        - bearerAuth: []
-      parameters:
-        - name: _id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: User data returned successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        '404':
-          description: User with the given ID was not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-    patch:
-      tags:
-        - "user"
-      summary: "Updates a user"
-      description: ""
-      security:
-        - bearerAuth: []
-      parameters:
-        - in: path
-          name: _id
-          required: true
-          schema: 
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-      responses:
-        '200':
-          description: User has been updated successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        '400':
-          description: Invalid request when the post data is invalid
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '404':
-          description: User with the given ID is not found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '500':
-          description: Internal server error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-    delete:
-      tags:
-        - "user"
-      summary: Deletes a user
-      description: ""
-      security:
-        - bearerAuth: []
-      parameters:
-        - in: path
-          name: _id
-          required: true
-          schema: 
-            type: string
-      responses:
-        '200':
-          description: User has been deleted successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                example: {}
-        '404':
-          description: User with the given ID is not found
           content:
             application/json:
               schema:
@@ -836,6 +673,169 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /users:
+    get:
+      tags:
+        - "user"
+      summary: "Returns a list of users"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "List of users returned successfully"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - "user"
+      summary: Creates a new user
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User has been created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /users/{_id}:
+    get:
+      tags:
+        - "user"
+      summary: "Returns the user with the given ID"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: _id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User data returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User with the given ID was not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - "user"
+      summary: "Updates a user"
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User has been updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid request when the post data is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: User with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - "user"
+      summary: Deletes a user
+      description: ""
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: path
+          name: _id
+          required: true
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: User has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        '404':
+          description: User with the given ID is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   securitySchemes:
     bearerAuth:
@@ -880,22 +880,6 @@ components:
           type: string
         packing:
           type: number
-    User:
-      type: object
-      required:
-        - name
-        - email
-        - password
-        - role
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-        password:
-          type: string
-        role:
-          type: number
     Medication:
       type: object
       required:
@@ -934,6 +918,22 @@ components:
         pills:
           type: number
         recipes:
+          type: number
+    User:
+      type: object
+      required:
+        - name
+        - email
+        - password
+        - role
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        role:
           type: number
     Error:
       type: object
