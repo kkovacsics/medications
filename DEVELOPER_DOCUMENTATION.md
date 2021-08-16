@@ -7,24 +7,24 @@
 **Célja:**
 
 Az alkalmazás célja, hogy segítse egy idősotthon lakóinak gyógyszerellátását.
-Nyilvántartsa az ehhez szükséges legfontosabb adatokat. Lakók és gyógyszereik adatai, a készleten lévő gyógyszerek és vények lakónként.
+Nyilvántartsa az ehhez szükséges legfontosabb adatokat. Lakók és gyógyszereik adatai, a készleten lévő gyógyszerek lakónként.
 
 **Technikai követelmények, előírások:**
 - Az alkalmazás Angular-alapú, model-service-component architektúra jellemzi
 - Az egyes service-eket egy base service szolgálja ki
-- Bootstrap, Font Awesome, CSS/SCSS
+- Bootstrap, Font-Awesome, CSS/SCSS
 - MongoDB, NoSQL
 - NodeJS API: saját API szolgálja ki a frontendet
 - Minden API útvonalhoz egy unit teszt kapcsolódik
 - Az API-hoz Swagger alapú dokumentáció tartozik
-- A felület csak belépés után elérhető (JWT autentikáció) 
+- A felület csak belépés után érhető el (JWT autentikáció) 
 - Adminisztrátori szerepkört leíró User Story a README.md-ben
 - Markdown dokumentáció a documentaton.md-ben
 - Az alkalmazás dockerizálva van, konténerből futtatható 
 
 **Megjelenése:**
 
-- Az alkalmazás egy fejléces navigációval rendelkezik, amely az egyes oldalak közötti váltáshoz szükséges
+- Az alkalmazás egy fej és oldalléces navigációval rendelkezik, amely az egyes oldalak közötti váltáshoz szükséges.
 - A főoldal egy dashboard, amelyen a legfontosabb adatok láthatóak: 
   - gyógyszerkészlet
   - vénykészlet
