@@ -9,11 +9,11 @@ services:
             - .:/app
         ports: 
             - "3000:3000"
-        links: 
-            - mongo
-    mongo:
-        image: mongo:latest
-        volumes: 
-            - ./data/db:/data/db
-        ports: 
-            - "27017:27017"
+    #     links: 
+    #         - mongo
+    # mongo:
+    #     image: mongo:latest
+    #     volumes: 
+    #         - ./data/db:/data/db
+    #     ports: 
+    #         - "27017:27017"

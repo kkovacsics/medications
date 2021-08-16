@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "test": "jest",
+    "build": "cd ../frontend && npm i && ng build --prod && npx copyfiles ./dist/frontend/* ../backend/public/ -f && cd ../backend && npm i && docker-compose up",
     "docker:build": "docker build -t medications:latest .",
     "docker-compose:up": "docker-compose up",
     "dev": "concurrently --kill-others \"docker-compose up\" \"node watcher.js\""
